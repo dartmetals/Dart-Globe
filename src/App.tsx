@@ -74,7 +74,7 @@ function App() {
       <Route path='/services/university-application' element={<UniversityApplication/>}/>
       <Route path='/services/visa-assistance' element={<VisaAssistance/>}/>
       <Route path='/faq' element={<FAQPage/>}/>
-      <Route path='/contact' element={<ContactForm/>}/>
+      <Route path='/contact-us' element={<ContactForm/>}/>
        </Routes> 
         <FooterSection/>       
         </Router>

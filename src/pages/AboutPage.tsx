@@ -6,7 +6,7 @@ const AboutUsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section with Curved Bottom (Image Only) */}
-<section className="relative h-[48vh] md:h-[100vh] text-white overflow-hidden bg-white">
+<section className="relative h-[36vh] md:h-[100vh] text-white overflow-hidden bg-white">
   
   {/* Background Image Wrapper */}
   <div
@@ -63,23 +63,12 @@ const AboutUsPage: React.FC = () => {
         </div>
       </section> */}
 
-      {/* Why Choose DartGlobe Consultation */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-6">
+      {/* Why Choose DartGlobe Consultation - Image below content on mobile/tablet */}
+      <section className="py-5 bg-gray-50">
+        <div className="container mx-auto px-6 mt-10">
           <div className="flex flex-col lg:flex-row items-center gap-8">
-            {/* Image Section */}
-            <div className="lg:w-1/2">
-              <div className="overflow-hidden ">
-                <img 
-                  src="/about4.png" 
-                  alt="DartGlobe Consultation" 
-                  className="w-full h-[76vh] object-contain"
-                />
-              </div>
-            </div>
-            
-            {/* Content Section */}
-            <div className="lg:w-1/2">
+            {/* Content Section - Comes first on mobile/tablet, right side on desktop */}
+            <div className="lg:w-1/2 order-1 lg:order-2">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
                 More Than Just Consultants - We Are Your Architects
               </h2>
@@ -95,17 +84,28 @@ const AboutUsPage: React.FC = () => {
                 you settle abroad. We are proud to be launchpad for your global education journey.
               </p>
             </div>
+            
+            {/* Image Section - Comes second on mobile/tablet, left side on desktop */}
+            <div className="lg:w-1/2 order-2 lg:order-1">
+              <div className="overflow-hidden ">
+                <img 
+                  src="/about4.png" 
+                  alt="DartGlobe Consultation" 
+                  className="w-full md:h-[76vh] object-contain"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Combined Benefits & Application Guide Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-5 bg-white">
+        <div className="container mx-auto px-6 mt-10">
           <div className="flex flex-col lg:flex-row gap-12">
-            {/* Image Section - 40% */}
-            <div className="lg:w-2/5">
-              <div className="sticky top-24">
+            {/* Image Section - 40% - Comes first on mobile/tablet, left side on desktop */}
+            <div className="lg:w-2/5 order-2 lg:order-1">
+              <div className="lg:sticky lg:top-24">
                 <div className="rounded-xl overflow-hidden ">
                   <img 
                     src="/Advantages.png" 
@@ -116,8 +116,8 @@ const AboutUsPage: React.FC = () => {
               </div>
             </div>
             
-            {/* Content Section - 60% */}
-            <div className="lg:w-3/5">
+            {/* Content Section - 60% - Comes second on mobile/tablet, right side on desktop */}
+            <div className="lg:w-3/5 order-1 lg:order-2">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-12 text-left">
                 Comprehensive Support for Your Journey
               </h2>
@@ -193,8 +193,8 @@ const AboutUsPage: React.FC = () => {
       </section>
 
     {/* White Cards with Hover & Click Effects */}
-<section className="md:py-16 bg-white">
-  <div className="container mx-auto px-6">
+<section className="py-5 bg-white">
+  <div className="container mx-auto px-6 mt-10">
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto transition-all duration-300 rounded-2xl p-3">
       {[
         {
@@ -257,12 +257,12 @@ const AboutUsPage: React.FC = () => {
 </section>
 
       {/* CTA Section */}
-<section className="bg-white py-8 md:py-0">
-  <div className="container mx-auto px-6">
+<section className="bg-white py-5 md:py-0">
+  <div className="container mx-auto px-6 mt-10">
     <div className="max-w-5xl mx-auto">
       <div className="flex flex-col lg:flex-row items-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl shadow-xl overflow-hidden min-h-[200px]">
-        {/* Image Section - 30% */}
-        <div className="lg:w-3/12 w-full">
+        {/* Image Section - 30% - Comes first on mobile/tablet, left side on desktop */}
+        <div className="lg:w-3/12 w-full order-1 lg:order-1">
           <div className="h-full">
             <img 
               src="/about-contact.png" 
@@ -272,8 +272,8 @@ const AboutUsPage: React.FC = () => {
           </div>
         </div>
         
-        {/* Content Section - 70% */}
-        <div className="lg:w-9/12 w-full p-6 md:p-8 lg:p-12 flex flex-col justify-center min-h-[200px]">
+        {/* Content Section - 70% - Comes second on mobile/tablet, right side on desktop */}
+        <div className="lg:w-9/12 w-full p-6 md:p-8 lg:p-12 flex flex-col justify-center min-h-[200px] order-2 lg:order-2">
           <h2 className="text-xs md:text-sm font-semibold text-gray-800 mb-2 md:mb-3 text-left">
             NOT SURE WHERE TO START?
           </h2>
@@ -284,7 +284,7 @@ const AboutUsPage: React.FC = () => {
             Our expert consultants are here to guide you through every step of your international education journey.
           </p>
           <div className="mt-auto">
-            <button onClick={()=>navigate("/contact")} className="border border-2 border-blue-600 hover:bg-blue-700 hover:text-white font-bold py-3 px-8 rounded-full text-sm md:text-base transition-all duration-300 transform hover:-translate-y-1  transform active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105 hover:scale-105 w-full sm:w-auto">
+            <button onClick={()=>navigate("/contact-us")} className="border border-2 border-blue-600 hover:bg-blue-700 hover:text-white font-bold py-3 px-8 rounded-full text-sm md:text-base transition-all duration-300 transform hover:-translate-y-1  transform active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105 hover:scale-105 w-full sm:w-auto">
               Contact Us
             </button>
           </div>

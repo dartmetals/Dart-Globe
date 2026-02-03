@@ -90,7 +90,7 @@ const StudyAustraliaPage: React.FC = () => {
           <p className="text-sm md:text-base text-gray-700 leading-relaxed text-left">
            Australia offers elite education with 9 universities in the global top 100, providing high-ROI pathways into AI and Healthcare sectors. We optimize your Genuine Student (GS) profile for 2026’s Subclass 500 reforms to secure admissions and exclusive scholarships. Our experts bridge the gap between world-class theory and lucrative post-study work rights in Australia’s booming economy.</p></div>
         <div className="mt-2">
-          <button onClick={()=>navigate('/contact')} className="border border-2 border-purple-700 md:border-[#FF0000] hover:text-white font-semibold rounded-4xl shadow md:hover:bg-[#FF0000] hover:bg-purple-800 px-6 md:px-8 py-3 md:py-4  font-bold text-med md:text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105 cursor-pointer">
+          <button onClick={()=>navigate('/contact-us')} className="border border-2 border-purple-700 md:border-[#FF0000] hover:text-white font-semibold rounded-4xl shadow md:hover:bg-[#FF0000] hover:bg-purple-800 px-6 md:px-8 py-3 md:py-4  font-bold text-med md:text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105 cursor-pointer">
             Check My Eligibility
           </button>
         </div>
@@ -606,7 +606,7 @@ Top Student Job Sectors</span>
              Stop dreaming and start planning. Let <strong className='text-red-400'>DartGlobe </strong> turn your study abroad ambitions into reality.</p>
             <p className="text-xs md:text-sm md:text-lg text-blue-100 mb-4 max-w-4xl mx-auto">
               Ready to take the next step? Don't navigate the complex admission process alone. From shortlisting the perfect university to securing your visa and scholarships, our experts are with you at every milestone.</p>
-            <button onClick={()=>navigate("/contact")} className="border border-2 border-white text-white px-6 md:px-8 py-4 rounded-4xl font-bold text-sm md:text-xl hover:bg-white hover:text-blue-900 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl  flex items-center justify-center mx-auto cursor-pointer hover:scale-105 active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105">
+            <button onClick={()=>navigate("/contact-us")} className="border border-2 border-white text-white px-6 md:px-8 py-4 rounded-4xl font-bold text-sm md:text-xl hover:bg-white hover:text-blue-900 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl  flex items-center justify-center mx-auto cursor-pointer hover:scale-105 active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105">
               🚀 Start My Free Application
             </button>
           </div>

@@ -388,7 +388,7 @@ London, E12 6SL
         key={type.value}
         className={`flex items-center justify-center space-x-2 p-2 rounded-lg border-2 cursor-pointer transition-all ${
           formData.queryType === type.value
-            ? 'border-[#FF0000] bg-red-50'
+            ? 'border-purple-800 md:border-[#FF0000]  bg-red-50'
             : 'border-gray-200 hover:border-gray-300'
         }`}
       >

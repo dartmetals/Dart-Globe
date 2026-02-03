@@ -56,7 +56,7 @@ const StudyUKPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-<section className="relative h-[50vh] sm:h-[76vh] md:h-[80vh] text-white overflow-hidden bg-white">
+<section className="relative h-[40vh] sm:h-[76vh] md:h-[80vh] text-white overflow-hidden bg-white">
   
   {/* Background Image Wrapper */}
   <div
@@ -92,7 +92,7 @@ const StudyUKPage: React.FC = () => {
             scholarships, and visas for a seamless transition.</p>
         </div>
         <div className="mt-2">
-          <button onClick={()=>navigate('/contact')} className="border border-2 border-purple-700 md:border-[#FF0000] hover:text-white font-semibold rounded-4xl shadow md:hover:bg-[#FF0000] hover:bg-purple-800  px-6 md:px-8 py-3 md:py-4  font-bold text-med md:text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105 cursor-pointer">
+          <button onClick={()=>navigate('/contact-us')} className="border border-2 border-purple-700 md:border-[#FF0000] hover:text-white font-semibold rounded-4xl shadow md:hover:bg-[#FF0000] hover:bg-purple-800  px-6 md:px-8 py-3 md:py-4  font-bold text-med md:text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105 cursor-pointer">
             Check My Eligibility
           </button>
         </div>
@@ -620,7 +620,7 @@ const StudyUKPage: React.FC = () => {
              Stop dreaming and start planning. Let <strong className='text-red-400'>DartGlobe </strong> turn your study abroad ambitions into reality.</p>
             <p className="text-xs md:text-sm md:text-lg text-blue-100 mb-4 max-w-4xl mx-auto">
               Ready to take the next step? Don't navigate the complex admission process alone. From shortlisting the perfect university to securing your visa and scholarships, our experts are with you at every milestone.</p>
-            <button onClick={()=>navigate("/contact")} className="border border-2 border-white text-white px-6 md:px-8 py-4 rounded-4xl font-bold text-sm md:text-xl hover:bg-white hover:text-blue-900 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl transition-all active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105 flex items-center justify-center mx-auto cursor-pointer hover:scale-105">
+            <button onClick={()=>navigate("/contact-us")} className="border border-2 border-white text-white px-6 md:px-8 py-4 rounded-4xl font-bold text-sm md:text-xl hover:bg-white hover:text-blue-900 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl transition-all active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105 flex items-center justify-center mx-auto cursor-pointer hover:scale-105">
               🚀 Start My Free Application
             </button>
           </div>

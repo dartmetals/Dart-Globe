@@ -90,7 +90,7 @@ const StudyIrelandPage: React.FC = () => {
           <p className="text-sm md:text-base text-gray-700 leading-relaxed text-left">
             As the primary English-speaking hub in the EU, Ireland connects world-class education with global industry. Home to the European HQs of giants like Google, Apple, and Pfizer, the "Silicon Docks" offer a premier ecosystem for tech, pharma, and finance careers. Master’s graduates benefit from a 24-month post-study work visa (Stamp 1G), bridging the gap to high-earning international roles in the heart of Europe.</p></div>
         <div className="mt-2">
-          <button onClick={()=>navigate('/contact')} className="border border-2 border-purple-700 md:border-[#FF0000] hover:text-white font-semibold rounded-4xl shadow md:hover:bg-[#FF0000] hover:bg-purple-800 px-6 md:px-8 py-3 md:py-4  font-bold text-med md:text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105 cursor-pointer">
+          <button onClick={()=>navigate('/contact-us')} className="border border-2 border-purple-700 md:border-[#FF0000] hover:text-white font-semibold rounded-4xl shadow md:hover:bg-[#FF0000] hover:bg-purple-800 px-6 md:px-8 py-3 md:py-4  font-bold text-med md:text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105 cursor-pointer">
             Check My Eligibility
           </button>
         </div>
@@ -610,7 +610,7 @@ const StudyIrelandPage: React.FC = () => {
              Stop dreaming and start planning. Let <strong className='text-red-400'>DartGlobe </strong> turn your study abroad ambitions into reality.</p>
             <p className="text-xs md:text-sm md:text-lg text-blue-100 mb-4 max-w-4xl mx-auto">
               Ready to take the next step? Don't navigate the complex admission process alone. From shortlisting the perfect university to securing your visa and scholarships, our experts are with you at every milestone.</p>
-            <button onClick={()=>navigate("/contact")} className="border border-2 border-white text-white px-6 md:px-8 py-4 rounded-4xl font-bold text-sm md:text-xl hover:bg-white hover:text-blue-900 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl transition-all active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105 flex items-center justify-center mx-auto cursor-pointer hover:scale-105">
+            <button onClick={()=>navigate("/contact-us")} className="border border-2 border-white text-white px-6 md:px-8 py-4 rounded-4xl font-bold text-sm md:text-xl hover:bg-white hover:text-blue-900 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl transition-all active:bg-purple-800 active:text-white active:-translate-y-1 active:bg-scale-105 flex items-center justify-center mx-auto cursor-pointer hover:scale-105">
               🚀 Start My Free Application
             </button>
           </div>

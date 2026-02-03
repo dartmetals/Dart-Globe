@@ -1,7 +1,9 @@
+// Header.tsx
 import { ChevronDown, MessageCircleMore, X, Mail, Phone } from 'lucide-react';
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import ContactForm from './ContactForm';
+import PopupRegisterForm from './PopupRegisterForm';
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -13,11 +15,75 @@ const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [contactHeaderVisible, setContactHeaderVisible] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
+  const [showFloatingIcon, setShowFloatingIcon] = useState(false);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [showMobileNotification, setShowMobileNotification] = useState(false);
+
+  // Add this useEffect after your existing useEffect that checks for hasSeenPopup
+useEffect(() => {
+  const hasSeen = sessionStorage.getItem('hasSeenPopup');
   
-  // Ref for the modal container
+  if (!hasSeen) {
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+      setIsPopupVisible(true);
+      sessionStorage.setItem('hasSeenPopup', 'true');
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  } else {
+    // If popup was already shown, show the floating icon on desktop
+    if (window.innerWidth >= 768) {
+      setShowFloatingIcon(true);
+    }
+  }
+}, []);
+
+  // Also update the handlePopupClose function to persist the floating icon state
+const handlePopupClose = () => {
+  setShowPopup(false);
+  setIsPopupVisible(false);
+  
+  if (window.innerWidth >= 768) {
+    setShowFloatingIcon(true);
+    // Store that floating icon should be shown
+    sessionStorage.setItem('shouldShowFloatingIcon', 'true');
+  } else {
+    setShowMobileNotification(true);
+    // Store that mobile notification should be shown
+    sessionStorage.setItem('shouldShowMobileNotification', 'true');
+  }
+};
+
+// Add this useEffect to restore floating icon state on page load
+useEffect(() => {
+  const shouldShowFloatingIcon = sessionStorage.getItem('shouldShowFloatingIcon');
+  const shouldShowMobileNotification = sessionStorage.getItem('shouldShowMobileNotification');
+  
+  if (shouldShowFloatingIcon === 'true' && window.innerWidth >= 768) {
+    setShowFloatingIcon(true);
+  }
+  
+  if (shouldShowMobileNotification === 'true' && window.innerWidth < 768) {
+    setShowMobileNotification(true);
+  }
+}, []);
+
+  useEffect(() => {
+    if (isPopupVisible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isPopupVisible]);
+
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Handle click outside modal
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -25,38 +91,30 @@ const Header: React.FC = () => {
       }
     };
 
-    // Only add event listener when modal is open
     if (isCounsellingOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
-    // Cleanup
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isCounsellingOpen]);
 
-  // Check scroll position and direction
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const isScrolled = currentScrollY > 10;
       setScrolled(isScrolled);
 
-      // Only apply scroll hide/show logic on desktop (min-width: 1024px)
       if (window.innerWidth >= 1024) {
         if (currentScrollY <= 10) {
-          // At top of page - show contact header
           setContactHeaderVisible(true);
         } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          // Scrolling down and past 100px - hide contact header
           setContactHeaderVisible(false);
         } else if (currentScrollY < lastScrollY && currentScrollY > 100) {
-          // Scrolling up but not at top - keep contact header hidden
           setContactHeaderVisible(false);
         }
       } else {
-        // On mobile/tablet, keep contact header visible
         setContactHeaderVisible(true);
       }
       
@@ -67,7 +125,6 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Social media icons
   const socialMedia = [
     { 
       name: 'LinkedIn', 
@@ -77,15 +134,6 @@ const Header: React.FC = () => {
         </svg>
       ), 
       href: 'https://linkedin.com/company/dartglobe' 
-    },
-    { 
-      name: 'Twitter', 
-      icon: () => (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-        </svg>
-      ), 
-      href: 'https://twitter.com/dartglobe' 
     },
     { 
       name: 'Instagram', 
@@ -107,7 +155,6 @@ const Header: React.FC = () => {
     }
   ];
 
-  // Check if mobile on mount and resize
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -130,7 +177,6 @@ const Header: React.FC = () => {
     { name: 'Ireland', path: '/study-abroad/Ireland' },
   ];
 
-  // Function to handle navigation with scroll to section
   const handleSectionNavigation = (sectionId: string) => {
     setIsMobileMenuOpen(false);
     
@@ -148,7 +194,6 @@ const Header: React.FC = () => {
     }
   };
 
-  // Effect to handle hash navigation when page loads
   useEffect(() => {
     const handleHashNavigation = () => {
       const hash = window.location.hash;
@@ -201,7 +246,7 @@ const Header: React.FC = () => {
         handleSectionNavigation('testimonials');
       }
     },
-    { name: 'Contact', href: '/contact'},
+    { name: 'Contact Us', href: '/contact-us'},
     { name: 'FAQ', href: '/faq' },
     { name: 'Book Free Counselling', href: '#', isCta: true, onClick: () => setIsCounsellingOpen(true) }
   ];
@@ -242,7 +287,6 @@ const Header: React.FC = () => {
     }
   ];
 
-  // Handle contact item click
   const handleContactClick = (item: typeof contactItems[0]) => {
     if (item.onClick) {
       item.onClick();
@@ -255,7 +299,6 @@ const Header: React.FC = () => {
     }
   };
 
-  // Helper function to render icon with increased size
   const renderIcon = (item: typeof contactItems[0]) => {
     const IconComponent = item.icon;
     return <IconComponent size={isMobile ? 22 : 24} className={item.iconColor} />;
@@ -263,22 +306,18 @@ const Header: React.FC = () => {
 
   return (
     <>
-      {/* Contact Details Header - Fixed on desktop, static on mobile/tablet */}
       <div 
         className={`top-0 left-0 w-full z-50 bg-black border-b border-gray-200 transition-all duration-300 ${
           contactHeaderVisible ? 'translate-y-0' : '-translate-y-full'
         } ${
-          // Fixed on desktop, static on mobile/tablet
           window.innerWidth >= 1024 ? 'fixed' : 'relative'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-2 md:py-2">
+          <div className="py-2 ">
             <div className="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-0">
               
-              {/* Left side - Contact Info - Hidden on mobile, visible on desktop */}
               <div className="hidden md:flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6">
-                {/* Email */}
                 <a 
                   href="mailto:info@dartglobe.com" 
                   className="flex items-center gap-2 text-sm text-gray-700 hover:text-blue-600 transition-colors"
@@ -287,7 +326,6 @@ const Header: React.FC = () => {
                   <span className='text-white font-semibold'>info@dartglobe.com</span>
                 </a>
                 
-                {/* Phone */}
                 <a 
                   href="tel:+91 9133329955" 
                   className="flex items-center gap-2 text-sm text-gray-700 hover:text-blue-600 transition-colors"
@@ -297,7 +335,6 @@ const Header: React.FC = () => {
                 </a>
               </div>
               
-              {/* On mobile, show only right side icons centered */}
               <div className="md:hidden flex items-center gap-4 justify-center w-full">
                 {socialMedia.map((social) => (
                   <a
@@ -313,7 +350,6 @@ const Header: React.FC = () => {
                 ))}
               </div>
               
-              {/* On desktop, show right side icons as before */}
               <div className="hidden md:flex items-center gap-4">
                 {socialMedia.map((social) => (
                   <a
@@ -333,334 +369,665 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Header - Fixed at top when contact header hides on desktop */}
       <header 
-        className={`fixed left-0 w-full z-40 transition-all duration-300 ${
+        className={`fixed z-40 transition-all duration-500 ${
           contactHeaderVisible ? 'top-9 md:top-8' : 'top-0'
         } ${
-          scrolled ? 'bg-white/30 backdrop-blur-lg' : 'bg-white shadow-sm'
+          scrolled && window.innerWidth < 1024 
+            ? 'bg-white/30 backdrop-blur-lg left-1/2 -translate-x-1/2' 
+            : 'left-0 w-full'
         }`}
-      >
-        <div className="relative w-full flex items-center justify-between w-full py-0.5 px-6">
-          <div className={`w-[100%] mx-auto ${
-            scrolled ? 'bg-transparent' : 'bg-white'
-          } px-4 sm:px-6 lg:px-6 rounded-3xl transition-all duration-300`}>
-            <div className="py-4">
-              <div className="flex justify-between items-center">
-
-                {/* Logo with Dart Globe Title */}
-                <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
-                  {/* <img
-                    src="/logo"
-                    alt="consultancy"
-                    className="h-16 w-auto object-contain"
-                  /> */}
-                  <div className="flex flex-col">
-                    <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-                      DART GLOBE
-                    </h1>
-                    {/* <p className="text-xs text-gray-500 font-medium">Global Education Consultancy</p> */}
-                  </div>
-                </div>
-
-                {/* Desktop Navigation */}
-<nav className="hidden lg:flex items-center space-x-5">
-  {navLinks.map((link) =>
-    link.name === 'Study Abroad' ? (
-      <div key={link.name} className="relative group">
-        <button className="flex items-center gap- font-medium text-gray-700 hover:text-blue-600 cursor-pointer">
-          Study Abroad
-          <ChevronDown size={18} className="group-hover:rotate-180 transition-transform" />
-        </button>
-
-        <div className="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all border border-gray-100">
-          <ul className="py-2">
-            {studyAbroadCountries.map((country, index) => (
-              <React.Fragment key={country.name}>
-                <li>
-                  <Link to={country.path} className="block px-4 py-3 hover:bg-blue-50">
-                    Study in {country.name}
-                  </Link>
-                </li>
-                {/* Horizontal line after each item except the last */}
-                {index < studyAbroadCountries.length - 1 && (
-                  <li className="border-t border-dashed border-gray-200"></li>
-                )}
-              </React.Fragment>
-            ))}
-          </ul>
-        </div>
-      </div>
-    ) : (
-      <Link
-        key={link.name}
-        to={link.href}
-        onClick={(e) => {
-          if (link.onClick) {
-            link.onClick(e);
-          }
-        }}
-        className={`font-medium ${
-          link.isCta
-            ? `bg-white border border-2 border-[#FF0000] text-black hover:text-white px-5 py-2.5 rounded-3xl hover:scale-105 hover:bg-[#FF0000] transition-all duration-300 transform hover:-translate-y-1 ${
-                scrolled ? 'md:bg-white/80' : ''
-              }`
-            : 'text-gray-700 hover:text-blue-600 hover:scale-105'
-        }`}
-      >
-        {link.name}
-      </Link>
-    )
-  )}
-</nav>
-
-                {/* Mobile Menu Button */}
-                <button
-                  className="lg:hidden p-2 rounded-lg hover:bg-blue-100"
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                >
-                  <div className="space-y-1.5">
-                    <span className="block w-6 h-0.5 bg-blue-700"></span>
-                    <span className="block w-6 h-0.5 bg-blue-700"></span>
-                    <span className="block w-6 h-0.5 bg-blue-700"></span>
-                  </div>
-                </button>
-              </div>
-
-             {/* Mobile Menu */}
-{isMobileMenuOpen && (
-  <div className="lg:hidden fixed inset-0 z-[9999] bg-black/50 backdrop-blur-sm">
-    {/* Mobile Menu Container - Start below contact header when at top */}
-    <div 
-      className="bg-white shadow-2xl w-full h-[100vh] overflow-hidden animate-slideDown"
-      style={{ 
-        position: 'fixed',
-        top: window.scrollY <= 10 ? '3.5rem' : '0', // Start below contact header at top
-        left: '0',
-        right: '0',
-        maxHeight: 'calc(100vh - 3.5rem)',
-        borderBottomLeftRadius: '1rem',
-        borderBottomRightRadius: '1rem'
-      }}
-    >
-      
-      {/* Header with Close Button */}
-      <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center flex-shrink-0">
-        <div className="flex items-center space-x-2">
-          <img
-            src="/logo"
-            alt="consultancy"
-            className="h-10 w-auto object-contain"
-          />
-          <h3 className="text-lg font-bold text-gray-900">DART GLOBE</h3>
-        </div>
-        <button
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-          aria-label="Close menu"
-        >
-          <X size={24} className="text-gray-600" />
-        </button>
-      </div>
-
-      {/* Scrollable Menu Content */}
-      <div 
-        className="overflow-y-auto h-full"
-        style={{ 
-          maxHeight: 'calc(100vh - 140px)', // Adjusted for the contact header
-          scrollbarWidth: 'thin',
-          scrollbarColor: '#cbd5e0 #f1f5f9'
+        style={{
+          width: scrolled && window.innerWidth < 1024 ? '90%' : '100%',
+          top: scrolled && window.innerWidth < 1024 ? '1rem' : (contactHeaderVisible ? '2.25rem' : '0'),
+          borderRadius: scrolled && window.innerWidth < 1024 ? '9999px' : '0',
+          background: scrolled && window.innerWidth < 1024 
+            ? 'rgba(255, 255, 255, 0.3)'
+            : window.innerWidth < 1024
+            ? 'white'
+            : scrolled
+            ? 'rgba(255, 255, 255, 0.3)'
+            : 'white',
+          backdropFilter: scrolled && window.innerWidth < 1024 
+            ? 'blur(10px)'
+            : window.innerWidth < 1024
+            ? 'none'
+            : scrolled
+            ? 'blur(10px)'
+            : 'none',
+          boxShadow: scrolled && window.innerWidth < 1024 
+            ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+            : '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)'
         }}
       >
-        <nav className="flex flex-col space-y-0 p-4">
-          
-          {/* Home */}
-          {navLinks
-            .filter(link => link.name === 'Home')
-            .map((link) => (
-              <React.Fragment key={link.name}>
-                <Link
-                  to={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="py-4 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center"
-                >
-                  {link.name}
-                </Link>
-                <div className="border-t border-gray-100"></div>
-              </React.Fragment>
-            ))}
-
-          {/* About Us */}
-          {navLinks
-            .filter(link => link.name === 'About Us')
-            .map((link) => (
-              <React.Fragment key={link.name}>
-                <Link
-                  to={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="py-4 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center"
-                >
-                  {link.name}
-                </Link>
-                <div className="border-t border-gray-100"></div>
-              </React.Fragment>
-            ))}
-
-          {/* Study Abroad */}
-          <div className="pt-1 cursor-pointer">
-            <button
-              className="flex items-center justify-between w-full py-4 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-              onClick={() => setIsStudyOpen(!isStudyOpen)}
-            >
-              <span className="flex items-center">
-                <span>Study Abroad</span>
-              </span>
-              <ChevronDown 
-                className={`${isStudyOpen ? 'rotate-180' : ''} transition-transform duration-200`} 
-                size={18} 
-              />
-            </button>
-            <div className="border-t border-gray-100"></div>
-
-            {isStudyOpen && (
-              <div className="mt-0 ml-4 space-y-0 border-l-2 border-blue-100 pl-4 pb-2">
-                {studyAbroadCountries.map((c, index) => (
-                  <React.Fragment key={c.name}>
-                    <Link
-                      to={c.path}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors pl-4 flex items-center"
-                    >
-                      <span className="mr-2">•</span>
-                      Study in {c.name}
-                    </Link>
-                    {index < studyAbroadCountries.length - 1 && (
-                      <div className="border-t border-dashed border-gray-100 ml-4"></div>
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Services */}
-          {navLinks
-            .filter(link => link.name === 'Our Services')
-            .map((link) => (
-              <React.Fragment key={link.name}>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (link.onClick) link.onClick(e);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="py-4 px-4 text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer flex items-center"
-                >
-                  {link.name}
-                </button>
-                <div className="border-t border-gray-100"></div>
-              </React.Fragment>
-            ))}
-
-          {/* Why Choose Us */}
-          {navLinks
-            .filter(link => link.name === 'Why Choose Us')
-            .map((link) => (
-              <React.Fragment key={link.name}>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (link.onClick) link.onClick(e);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="py-4 px-4 text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer flex items-center"
-                >
-                  {link.name}
-                </button>
-                <div className="border-t border-gray-100"></div>
-              </React.Fragment>
-            ))}
-
-          {/* Our Success */}
-          {navLinks
-            .filter(link => link.name === 'Our Success')
-            .map((link) => (
-              <React.Fragment key={link.name}>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (link.onClick) link.onClick(e);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="py-4 px-4 text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer flex items-center"
-                >
-                  {link.name}
-                </button>
-                <div className="border-t border-gray-100"></div>
-              </React.Fragment>
-            ))}
-
-          {/* FAQ */}
-          {navLinks
-            .filter(link => link.name === 'FAQ')
-            .map((link) => (
-              <React.Fragment key={link.name}>
-                <Link
-                  to={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="py-4 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center"
-                >
-                  {link.name}
-                </Link>
-                <div className="border-t border-gray-100"></div>
-              </React.Fragment>
-            ))}
-
-          {/* Book Free Counselling - CTA Button */}
-          {navLinks
-            .filter(link => link.isCta)
-            .map((link) => (
-              <button
-                key={link.name}
-                onClick={() => {
-                  if (link.onClick) {
-                    if (typeof link.onClick === 'function') {
-                      link.onClick({ preventDefault: () => {} } as React.MouseEvent);
-                    }
-                  }
-                  setIsMobileMenuOpen(false);
-                }}
-                className="mt-4 mb-6 mx-4 border-2 border-[#FF0000] bg-white text-black px-6 py-3.5 rounded-3xl font-medium hover:bg-[#FF0000] hover:text-white active:bg-[#FF0000] active:text-white transition-all duration-300 transform hover:scale-105 text-center shadow-md"
-              >
-                {link.name}
-              </button>
-            ))}
-        </nav>
-      </div>
-    </div>
+        <div className={`w-full mx-auto ${
+          scrolled && window.innerWidth < 1024 
+            ? 'bg-transparent' 
+            : 'bg-transparent'
+        } px-4 sm:px-6 lg:px-6 transition-all duration-300`}>
+          <div className={`md:py-4 transition-all duration-300 ${
+            scrolled && window.innerWidth < 1024 ? 'py-2' : ''
+          }`}>
+            <div className="flex justify-between items-center">
+              <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
+  <div className="flex items-center">
+    <img 
+      src="/dg-logo.png" 
+      alt="Dart Globe Logo" 
+      className={`transition-all duration-300 ${
+        scrolled && window.innerWidth < 1024 ? 'h-8 w-auto' : 'h-16 w-auto ml-6'
+      }`}
+    />
   </div>
-)}    </div>
+</div>
+
+              <nav className={`hidden lg:flex items-center space-x-5 ${
+                scrolled && window.innerWidth < 1024 ? 'hidden' : ''
+              }`}>
+                {navLinks.map((link) =>
+                  link.name === 'Study Abroad' ? (
+                    <div key={link.name} className="relative group">
+                      <button className="flex items-center gap- font-medium text-gray-700 hover:text-blue-600 cursor-pointer">
+                        Study Abroad
+                        <ChevronDown size={18} className="group-hover:rotate-180 transition-transform" />
+                      </button>
+
+                      <div className="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all border border-gray-100">
+                        <ul className="py-2">
+                          {studyAbroadCountries.map((country, index) => (
+                            <React.Fragment key={country.name}>
+                              <li>
+                                <Link to={country.path} className="block px-4 py-3 hover:bg-blue-50">
+                                  Study in {country.name}
+                                </Link>
+                              </li>
+                              {index < studyAbroadCountries.length - 1 && (
+                                <li className="border-t border-dashed border-gray-200"></li>
+                              )}
+                            </React.Fragment>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  ) : (
+                    <Link
+                      key={link.name}
+                      to={link.href}
+                      onClick={(e) => {
+                        if (link.onClick) {
+                          link.onClick(e);
+                        }
+                      }}
+                      className={`font-medium ${
+                        link.isCta
+                          ? `bg-white border border-2 border-[#FF0000] text-black hover:text-white px-5 py-2.5 rounded-3xl hover:scale-105 hover:bg-[#FF0000] transition-all duration-300 transform hover:-translate-y-1 ${
+                              scrolled ? 'md:bg-white/80' : ''
+                            }`
+                          : 'text-gray-700 hover:text-blue-600 hover:scale-105'
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  )
+                )}
+              </nav>
+
+              <button
+                className={`lg:hidden p-2 rounded-lg hover:bg-blue-100 transition-all duration-300 ${
+                  scrolled && window.innerWidth < 1024 ? 'p-1.5' : ''
+                }`}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                <div className="space-y-1.5">
+                  <span className={`block bg-blue-700 transition-all duration-300 ${
+                    scrolled && window.innerWidth < 1024 ? 'w-5 h-0.5' : 'w-6 h-0.5'
+                  }`}></span>
+                  <span className={`block bg-blue-700 transition-all duration-300 ${
+                    scrolled && window.innerWidth < 1024 ? 'w-5 h-0.5' : 'w-6 h-0.5'
+                  }`}></span>
+                  <span className={`block bg-blue-700 transition-all duration-300 ${
+                    scrolled && window.innerWidth < 1024 ? 'w-5 h-0.5' : 'w-6 h-0.5'
+                  }`}></span>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Horizontal Contact Buttons - Always Visible */}
-      <div className="fixed bottom-4 right-0 z-50">
-        <div className="flex items-center gap-3 p-2">
-          {contactItems.map((item) => (
+      {isMobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-[9999] bg-black/50">
+          <div 
+            className="bg-white shadow-2xl w-full h-[100vh] overflow-hidden animate-slideDown"
+            style={{ 
+              position: 'fixed',
+              top: window.scrollY <= 10 ? '3.5rem' : '0',
+              left: '0',
+              right: '0',
+              maxHeight: 'calc(100vh - 3.5rem)',
+              borderBottomLeftRadius: '1rem',
+              borderBottomRightRadius: '1rem'
+            }}
+          >
+            
+            <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center flex-shrink-0">
+              <div className="flex items-center space-x-2">
+  <img 
+    src="/dg-logo.png" 
+    alt="Dart Globe Logo" 
+    className="h-16 w-auto"
+  />
+</div>
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                aria-label="Close menu"
+              >
+                <X size={24} className="text-gray-600" />
+              </button>
+            </div>
+
+            <div 
+              className="overflow-y-auto h-full"
+              style={{ 
+                maxHeight: 'calc(100vh - 140px)',
+                scrollbarWidth: 'thin',
+                scrollbarColor: '#cbd5e0 #f1f5f9'
+              }}
+            >
+              <nav className="flex flex-col space-y-0 p-4">
+                
+                {navLinks
+                  .filter(link => link.name === 'Home')
+                  .map((link) => (
+                    <React.Fragment key={link.name}>
+                      <Link
+                        to={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="py-4 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center"
+                      >
+                        {link.name}
+                      </Link>
+                      <div className="border-t border-gray-100"></div>
+                    </React.Fragment>
+                  ))}
+
+                {navLinks
+                  .filter(link => link.name === 'About Us')
+                  .map((link) => (
+                    <React.Fragment key={link.name}>
+                      <Link
+                        to={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="py-4 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center"
+                      >
+                        {link.name}
+                      </Link>
+                      <div className="border-t border-gray-100"></div>
+                    </React.Fragment>
+                  ))}
+
+                <div className="pt-1 cursor-pointer">
+                  <button
+                    className="flex items-center justify-between w-full py-4 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                    onClick={() => setIsStudyOpen(!isStudyOpen)}
+                  >
+                    <span className="flex items-center">
+                      <span>Study Abroad</span>
+                    </span>
+                    <ChevronDown 
+                      className={`${isStudyOpen ? 'rotate-180' : ''} transition-transform duration-200`} 
+                      size={18} 
+                    />
+                  </button>
+                  <div className="border-t border-gray-100"></div>
+
+                  {isStudyOpen && (
+                    <div className="mt-0 ml-4 space-y-0 border-l-2 border-blue-100 pl-4 pb-2">
+                      {studyAbroadCountries.map((c, index) => (
+                        <React.Fragment key={c.name}>
+                          <Link
+                            to={c.path}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="block py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors pl-4 flex items-center"
+                          >
+                            <span className="mr-2">•</span>
+                            Study in {c.name}
+                          </Link>
+                          {index < studyAbroadCountries.length - 1 && (
+                            <div className="border-t border-dashed border-gray-100 ml-4"></div>
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {navLinks
+                  .filter(link => link.name === 'Our Services')
+                  .map((link) => (
+                    <React.Fragment key={link.name}>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (link.onClick) link.onClick(e);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="py-4 px-4 text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer flex items-center"
+                      >
+                        {link.name}
+                      </button>
+                      <div className="border-t border-gray-100"></div>
+                    </React.Fragment>
+                  ))}
+
+                {navLinks
+                  .filter(link => link.name === 'Why Choose Us')
+                  .map((link) => (
+                    <React.Fragment key={link.name}>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (link.onClick) link.onClick(e);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="py-4 px-4 text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer flex items-center"
+                      >
+                        {link.name}
+                      </button>
+                      <div className="border-t border-gray-100"></div>
+                    </React.Fragment>
+                  ))}
+
+                {navLinks
+                  .filter(link => link.name === 'Our Success')
+                  .map((link) => (
+                    <React.Fragment key={link.name}>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (link.onClick) link.onClick(e);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="py-4 px-4 text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer flex items-center"
+                      >
+                        {link.name}
+                      </button>
+                      <div className="border-t border-gray-100"></div>
+                    </React.Fragment>
+                  ))}
+
+                {navLinks
+                  .filter(link => link.name === 'Contact Us')
+                  .map((link) => (
+                    <React.Fragment key={link.name}>
+                      <Link
+                        to={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="py-4 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center"
+                      >
+                        {link.name}
+                      </Link>
+                      <div className="border-t border-gray-100"></div>
+                    </React.Fragment>
+                  ))}
+
+                {navLinks
+                  .filter(link => link.name === 'FAQ')
+                  .map((link) => (
+                    <React.Fragment key={link.name}>
+                      <Link
+                        to={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="py-4 px-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center"
+                      >
+                        {link.name}
+                      </Link>
+                      <div className="border-t border-gray-100"></div>
+                    </React.Fragment>
+                  ))}
+
+                {navLinks
+                  .filter(link => link.isCta)
+                  .map((link) => (
+                    <button
+                      key={link.name}
+                      onClick={() => {
+                        if (link.onClick) {
+                          if (typeof link.onClick === 'function') {
+                            link.onClick({ preventDefault: () => {} } as React.MouseEvent);
+                          }
+                        }
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="mt-4 mb-6 mx-4 border-2 border-[#FF0000] bg-white text-black px-6 py-3.5 rounded-3xl font-medium hover:bg-[#FF0000] hover:text-white active:bg-[#FF0000] active:text-white transition-all duration-300 transform hover:scale-105 text-center shadow-md"
+                    >
+                      {link.name}
+                    </button>
+                  ))}
+              </nav>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="fixed bottom-7 md:bottom-4 right-0 z-50">
+        <div className="flex flex-col items-end gap-3 p-2">
+{/* {showFloatingIcon && !isMobile && (
+  <div className="flex flex-col items-end gap-2 mb-2">
+    <button
+      onClick={() => {
+        setShowPopup(true);
+        setShowFloatingIcon(false);
+      }}
+      className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-xl animate-bounce"
+      title="Register for Free Consultation"
+    >
+      <img 
+        src="/popup-icon.png" 
+        alt="Free Consultation" 
+        className="w-10 h-10 object-contain"
+        onError={(e) => {
+          // Fallback to SVG if image doesn't load
+          e.currentTarget.style.display = 'none';
+          // Create SVG fallback
+          const parent = e.currentTarget.parentElement;
+          if (parent) {
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('class', 'w-8 h-8 text-white');
+            svg.setAttribute('fill', 'none');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            svg.setAttribute('stroke', 'currentColor');
+            
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('stroke-linecap', 'round');
+            path.setAttribute('stroke-linejoin', 'round');
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('d', 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z');
+            
+            svg.appendChild(path);
+            parent.appendChild(svg);
+          }
+        }}
+      />
+    </button>
+    <div className="bg-white/90 px-3  rounded-lg shadow-md border border-gray-200 mr-1">
+      <span className="text-xs font-medium text-purple-700 whitespace-nowrap">
+        Free Consultation
+      </span>
+    </div>
+  </div>
+)} */}
+
+          {showMobileNotification && isMobile && (
+  <div className="fixed bottom-0 left-0 right-0 z-[9997] bg-black border-t border-gray-200 animate-slideUpFromBottom">
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="py-1">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <div className="w-4 h-4 flex items-center justify-center">
+              <img 
+                src="/popup-icon.png" 
+                alt="Free Consultation" 
+                className="w-4 h-4 object-contain"
+                onError={(e) => {
+                  // Fallback to SVG if image doesn't load
+                  e.currentTarget.style.display = 'none';
+                  // Create SVG fallback
+                  const parent = e.currentTarget.parentElement;
+                  if (parent) {
+                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svg.setAttribute('class', 'w-4 h-4 text-white');
+                    svg.setAttribute('fill', 'none');
+                    svg.setAttribute('viewBox', '0 0 24 24');
+                    svg.setAttribute('stroke', 'currentColor');
+                    
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path.setAttribute('stroke-linecap', 'round');
+                    path.setAttribute('stroke-linejoin', 'round');
+                    path.setAttribute('stroke-width', '2');
+                    path.setAttribute('d', 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z');
+                    
+                    svg.appendChild(path);
+                    parent.appendChild(svg);
+                  }
+                }}
+              />
+            </div>
+            <div>
+              <h3 className="font-semibold text-sm text-white">Free Consultation Available</h3>
+            </div>
+          </div>
+          <div className="flex items-center space-x-1">
             <button
-              key={item.label}
+              onClick={() => {
+                setShowPopup(true);
+                setShowMobileNotification(false);
+              }}
+              className="px-3 py-1 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors text-xs"
+            >
+              Register
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+          
+          {/* Desktop: Vertical contact icons with popup icon below */}
+<div className="hidden md:flex flex-col items-end fixed bottom-7 right-0 z-50 gap-3 p-2">
+  {/* Contact icons - vertical stack */}
+  <div className="flex flex-col items-end gap-3 mb-3">
+    {contactItems.map((item) => {
+  const IconComponent = item.icon;
+  return (
+    <div key={item.label} className="relative group">
+      <button
+        onClick={() => handleContactClick(item)}
+        className={`w-8 h-8 rounded-full bg-white/30 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow hover:shadow-lg border-2 ${item.borderColor} ${item.hoverBorderColor}`}
+        title={item.label}
+      >
+        <IconComponent size={20} className={item.iconColor} />
+      </button>
+      <div className="absolute right-full top-1/2 -translate-y-1/2 mr-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+        <div className="bg-white/90 px-3 py-1.5 rounded-lg shadow-md border border-gray-200 whitespace-nowrap">
+          <span className="text-xs font-medium text-gray-700">
+            {item.label}
+          </span>
+        </div>
+        <div className="absolute top-1/2 left-full -translate-y-1/2 -ml-1 border-4 border-transparent border-l-white/90"></div>
+      </div>
+    </div>
+  );
+})}
+  </div>
+
+  {/* Popup notification icon - below contact icons */}
+  {showFloatingIcon && (
+    <div className="flex flex-col items-end gap-2">
+      <button
+        onClick={() => {
+          setShowPopup(true);
+          setShowFloatingIcon(false);
+        }}
+        className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-xl animate-bounce"
+        title="Register for Free Consultation"
+      >
+        <img 
+          src="/popup-icon.png" 
+          alt="Free Consultation" 
+          className="w-8 h-8 object-contain"
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+            const parent = e.currentTarget.parentElement;
+            if (parent) {
+              const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+              svg.setAttribute('class', 'w-8 h-8 text-white');
+              svg.setAttribute('fill', 'none');
+              svg.setAttribute('viewBox', '0 0 24 24');
+              svg.setAttribute('stroke', 'currentColor');
+              
+              const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+              path.setAttribute('stroke-linecap', 'round');
+              path.setAttribute('stroke-linejoin', 'round');
+              path.setAttribute('stroke-width', '2');
+              path.setAttribute('d', 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z');
+              
+              svg.appendChild(path);
+              parent.appendChild(svg);
+            }
+          }}
+        />
+      </button>
+      <div className="bg-white/90 px-2 rounded-lg shadow-md border border-gray-200 mr-1">
+        <span className="text-xs font-medium text-purple-700 whitespace-nowrap">
+          Free Consultation
+        </span>
+      </div>
+    </div>
+  )}
+</div>
+
+{/* Mobile/Tab: Original horizontal layout */}
+<div className="md:hidden fixed bottom-7 right-0 z-50">
+  <div className="flex flex-col items-end gap-3 p-2">
+    {/* Mobile notification banner */}
+    {showMobileNotification && (
+      <div className="fixed bottom-0 left-0 right-0 z-[9997] bg-black border-t border-gray-200 animate-slideUpFromBottom">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="py-1">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center space-x-2">
+                <div className="w-4 h-4 flex items-center justify-center">
+                  <img 
+                    src="/popup-icon.png" 
+                    alt="Free Consultation" 
+                    className="w-4 h-4 object-contain"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      const parent = e.currentTarget.parentElement;
+                      if (parent) {
+                        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                        svg.setAttribute('class', 'w-4 h-4 text-white');
+                        svg.setAttribute('fill', 'none');
+                        svg.setAttribute('viewBox', '0 0 24 24');
+                        svg.setAttribute('stroke', 'currentColor');
+                        
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        path.setAttribute('stroke-linecap', 'round');
+                        path.setAttribute('stroke-linejoin', 'round');
+                        path.setAttribute('stroke-width', '2');
+                        path.setAttribute('d', 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z');
+                        
+                        svg.appendChild(path);
+                        parent.appendChild(svg);
+                      }
+                    }}
+                  />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm text-white">Free Consultation Available</h3>
+                </div>
+              </div>
+              <div className="flex items-center space-x-1">
+                <button
+                  onClick={() => {
+                    setShowPopup(true);
+                    setShowMobileNotification(false);
+                  }}
+                  className="px-3 py-1 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors text-xs"
+                >
+                  Register
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* Floating popup icon for mobile */}
+    {/* {showFloatingIcon && (
+      <div className="flex flex-col items-end gap-2 mb-2">
+        <button
+          onClick={() => {
+            setShowPopup(true);
+            setShowFloatingIcon(false);
+          }}
+          className="w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-xl animate-bounce"
+          title="Register for Free Consultation"
+        >
+          <img 
+            src="/popup-icon.png" 
+            alt="Free Consultation" 
+            className="w-8 h-8 object-contain"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+              const parent = e.currentTarget.parentElement;
+              if (parent) {
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('class', 'w-6 h-6 text-white');
+                svg.setAttribute('fill', 'none');
+                svg.setAttribute('viewBox', '0 0 24 24');
+                svg.setAttribute('stroke', 'currentColor');
+                
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('stroke-linecap', 'round');
+                path.setAttribute('stroke-linejoin', 'round');
+                path.setAttribute('stroke-width', '2');
+                path.setAttribute('d', 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z');
+                
+                svg.appendChild(path);
+                parent.appendChild(svg);
+              }
+            }}
+          />
+        </button>
+        <div className="bg-white/90 px-3 py-1 rounded-lg shadow-md border border-gray-200 mr-1">
+          <span className="text-xs font-medium text-purple-700 whitespace-nowrap">
+            Free Consultation
+          </span>
+        </div>
+      </div>
+    )} */}
+    
+    {/* Horizontal contact icons for mobile */}
+    <div className="flex items-center gap-3">
+      {contactItems.map((item) => {
+        const IconComponent = item.icon;
+        return (
+          <div key={item.label} className="relative group">
+            <button
               onClick={() => handleContactClick(item)}
-              className={`w-12 h-12 rounded-full bg-white/30 backdrop-blur-lg flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow hover:shadow-lg border-2 ${item.borderColor} ${item.hoverBorderColor}`}
+              className={`w-12 h-12 rounded-full bg-white/30 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow hover:shadow-lg border-2 ${item.borderColor} ${item.hoverBorderColor}`}
               title={item.label}
             >
-              {renderIcon(item)}
+              <IconComponent size={22} className={item.iconColor} />
             </button>
-          ))}
+            <div className="absolute bottom-full right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div className="bg-white/90 px-3 py-1.5 rounded-lg shadow-md border border-gray-200 whitespace-nowrap">
+                <span className="text-xs font-medium text-gray-700">
+                  {item.label}
+                </span>
+              </div>
+              <div className="absolute top-full right-3 -mt-1 border-4 border-transparent border-t-white/90"></div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</div>
         </div>
       </div>
 
-      {/* Free Counselling Modal - Pass isModal prop to ContactForm */}
+      <PopupRegisterForm 
+        isOpen={showPopup} 
+        onClose={handlePopupClose}
+        isMobile={isMobile} 
+      />
+
       {isCounsellingOpen && (
         <div 
           className="fixed inset-0 z-[999] flex items-center justify-center bg-black/60 p-4 animate-fadeIn"
@@ -671,10 +1038,8 @@ const Header: React.FC = () => {
             className="relative w-full max-w-5xl animate-slideUp"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Container - Full height scrolling for mobile */}
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden h-full max-h-[95vh] flex flex-col">
               
-              {/* Header with Close Button */}
               <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center flex-shrink-0">
                 <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 pr-4">
                   Book Free Counselling
@@ -688,7 +1053,6 @@ const Header: React.FC = () => {
                 </button>
               </div>
 
-              {/* Scrollable Contact Form Content */}
               <div className="flex-1 overflow-y-auto">
                 <ContactForm isModal={true} />
               </div>
@@ -697,7 +1061,6 @@ const Header: React.FC = () => {
         </div>
       )}
 
-      {/* Add CSS animations */}
       <style>{`
         @keyframes slideDown {
           from {
@@ -708,6 +1071,19 @@ const Header: React.FC = () => {
             opacity: 1;
             transform: translateY(0) scale(1);
           }
+        }
+
+        @keyframes bounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        .animate-bounce {
+          animation: bounce 2s infinite;
         }
         
         @keyframes fadeIn {
@@ -730,21 +1106,6 @@ const Header: React.FC = () => {
           }
         }
         
-        @keyframes popOut {
-          0% {
-            transform: scale(0);
-            opacity: 0;
-          }
-          70% {
-            transform: scale(1.1);
-            opacity: 1;
-          }
-          100% {
-            transform: scale(1);
-            opacity: 1;
-          }
-        }
-        
         .animate-slideDown {
           animation: slideDown 0.3s ease-out forwards;
         }
@@ -756,12 +1117,7 @@ const Header: React.FC = () => {
         .animate-slideUp {
           animation: slideUp 0.4s ease-out forwards;
         }
-        
-        .animate-popOut {
-          animation: popOut 0.3s ease-out forwards;
-        }
 
-        /* Hide scrollbar for modal content */
         .overflow-y-auto {
           scrollbar-width: none;
           -ms-overflow-style: none;

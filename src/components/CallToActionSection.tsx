@@ -27,7 +27,7 @@ const CallToActionSection: React.FC = () => {
                     and navigate the entire admission process successfully.
                   </p>
 
-                  <button onClick={()=>navigate("/contact")} className="group relative px-6 py-3 border border-2 border-purple-700 text-black rounded-4xl font-bold text-xs md:text-lg hover:bg-purple-800 hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl active:bg-purple-800 active:text-white active:bg-scale-105 active:-translate-y-1 flex items-center justify-center">
+                  <button onClick={()=>navigate("/contact-us")} className="group relative px-6 py-3 border border-2 border-purple-700 text-black rounded-4xl font-bold text-xs md:text-lg hover:bg-purple-800 hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl active:bg-purple-800 active:text-white active:bg-scale-105 active:-translate-y-1 flex items-center justify-center">
                     <MessageCircle className="h-5 w-5 mr-3" />
                     Talk to a Counsellor
                     <ArrowRight className="h-5 w-5 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
