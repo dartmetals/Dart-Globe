@@ -6,7 +6,7 @@ const AboutUsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section with Curved Bottom (Image Only) */}
-<section className="relative h-[36vh] md:h-[100vh] text-white overflow-hidden bg-white">
+<section className="relative h-[40vh] md:h-[100vh] text-white overflow-hidden bg-white">
   
   {/* Background Image Wrapper */}
   <div
@@ -65,7 +65,7 @@ const AboutUsPage: React.FC = () => {
 
       {/* Why Choose DartGlobe Consultation - Image below content on mobile/tablet */}
       <section className="py-5 bg-gray-50">
-        <div className="container mx-auto px-6 mt-10">
+        <div className="container mx-auto px-6 mt-8">
           <div className="flex flex-col lg:flex-row items-center gap-8">
             {/* Content Section - Comes first on mobile/tablet, right side on desktop */}
             <div className="lg:w-1/2 order-1 lg:order-2">
@@ -101,7 +101,7 @@ const AboutUsPage: React.FC = () => {
 
       {/* Combined Benefits & Application Guide Section */}
       <section className="py-5 bg-white">
-        <div className="container mx-auto px-6 mt-10">
+        <div className="container mx-auto px-6 mt-8">
           <div className="flex flex-col lg:flex-row gap-12">
             {/* Image Section - 40% - Comes first on mobile/tablet, left side on desktop */}
             <div className="lg:w-2/5 order-2 lg:order-1">
@@ -118,7 +118,7 @@ const AboutUsPage: React.FC = () => {
             
             {/* Content Section - 60% - Comes second on mobile/tablet, right side on desktop */}
             <div className="lg:w-3/5 order-1 lg:order-2">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-12 text-left">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-left">
                 Comprehensive Support for Your Journey
               </h2>
               
@@ -130,7 +130,7 @@ const AboutUsPage: React.FC = () => {
                       <span className="mr-3">✨</span>
                       Our Benefits
                     </h3>
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                       {[
                         "Free Global processing",
                         "Expert Test Prep(IELTS/PTE)",
@@ -163,7 +163,7 @@ const AboutUsPage: React.FC = () => {
                       <span className="mr-3">📋</span>
                       Application Guide
                     </h3>
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                       {[
                         "Strategic Roadmap",
                         "Live Status Tracking",
@@ -194,7 +194,7 @@ const AboutUsPage: React.FC = () => {
 
     {/* White Cards with Hover & Click Effects */}
 <section className="py-5 bg-white">
-  <div className="container mx-auto px-6 mt-10">
+  <div className="container mx-auto px-6 mt-8">
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto transition-all duration-300 rounded-2xl p-3">
       {[
         {
@@ -258,7 +258,7 @@ const AboutUsPage: React.FC = () => {
 
       {/* CTA Section */}
 <section className="bg-white py-5 md:py-0">
-  <div className="container mx-auto px-6 mt-10">
+  <div className="container mx-auto px-6 mt-8">
     <div className="max-w-5xl mx-auto">
       <div className="flex flex-col lg:flex-row items-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl shadow-xl overflow-hidden min-h-[200px]">
         {/* Image Section - 30% - Comes first on mobile/tablet, left side on desktop */}
