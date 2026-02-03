@@ -552,7 +552,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isModal = false }) => {
     }
   };
 
-  const handlePhoneChange = (value: string, country: any) => {
+  const handlePhoneChange = (value: string) => {
     setFormData(prev => ({ 
       ...prev, 
       phone: value,
