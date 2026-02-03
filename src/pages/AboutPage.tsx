@@ -6,7 +6,7 @@ const AboutUsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section with Curved Bottom (Image Only) */}
-<section className="relative h-[44vh] md:h-[100vh] text-white overflow-hidden bg-white">
+<section className="relative h-[40vh] md:h-[100vh] text-white overflow-hidden bg-white">
   
   {/* Background Image Wrapper */}
   <div
