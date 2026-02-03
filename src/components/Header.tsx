@@ -299,10 +299,10 @@ useEffect(() => {
     }
   };
 
-  const renderIcon = (item: typeof contactItems[0]) => {
-    const IconComponent = item.icon;
-    return <IconComponent size={isMobile ? 22 : 24} className={item.iconColor} />;
-  };
+  // const renderIcon = (item: typeof contactItems[0]) => {
+  //   const IconComponent = item.icon;
+  //   return <IconComponent size={isMobile ? 22 : 24} className={item.iconColor} />;
+  // };
 
   return (
     <>

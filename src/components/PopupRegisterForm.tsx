@@ -22,7 +22,7 @@ interface PopupRegisterFormProps {
   isMobile: boolean;
 }
 
-const PopupRegisterForm: React.FC<PopupRegisterFormProps> = ({ isOpen, onClose, isMobile }) => {
+const PopupRegisterForm: React.FC<PopupRegisterFormProps> = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
