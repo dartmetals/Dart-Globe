@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
       name: 'Contact', 
       type: 'section',
       sectionId: 'contact',
-      onClick: () => handlePageNavigation('/contact')
+      onClick: () => handlePageNavigation('/contact-us')
     }
   ];
 
