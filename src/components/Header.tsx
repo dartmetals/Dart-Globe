@@ -405,7 +405,7 @@ useEffect(() => {
             ? 'bg-transparent' 
             : 'bg-transparent'
         } px-4 sm:px-6 lg:px-6 transition-all duration-300`}>
-          <div className={`md:py-4 transition-all duration-300 ${
+          <div className={`md:py-2 transition-all duration-300 ${
             scrolled && window.innerWidth < 1024 ? 'py-2' : ''
           }`}>
             <div className="flex justify-between items-center">
@@ -415,7 +415,7 @@ useEffect(() => {
       src="/dg-logo.png" 
       alt="Dart Globe Logo" 
       className={`transition-all duration-300 ${
-        scrolled && window.innerWidth < 1024 ? 'h-8 w-auto' : 'h-16 w-auto ml-6'
+        scrolled && window.innerWidth < 1024 ? 'h-8 w-auto' : 'h-18 w-auto ml-6'
       }`}
     />
   </div>

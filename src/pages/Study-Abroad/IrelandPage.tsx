@@ -72,17 +72,17 @@ const StudyIrelandPage: React.FC = () => {
   {/* Content */}
   <div className="relative z-10 h-full container mx-auto px-6 flex items-center">
   <div className="max-w-xl text-left sm:text-left md:text-left">
-    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 max-w-3xl">
-  Study in Ireland<br />
-  {/* <span className="block ml-12 sm:ml-12 md:ml-16 lg:ml-16 mt-2">United Kingdom</span> */}
+    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 max-w-3xl text-black">
+  Study in <br />
+  <span className="block ml-12 sm:ml-12 md:ml-16 lg:ml-16 mt-2">Ireland</span>
 </h1>
   </div>
 </div>
 </section>
 
         {/* Study in UK - Overview */}
-       <section className="w-[80%] mx-auto scroll-mt-20">
-  <div className="flex justify-center py-5 md:mt-12">
+       <section className="w-[80%] mx-auto scroll-mt-20 py-">
+  <div className="flex justify-center mt-8">
     <div className="bg-gradient-to-br from-blue-50 to-gray-50 rounded-2xl p-6 md:p-8  border border-blue-100 w-fit max-w-6xl mx-auto">
       <div className="text-center ">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 ">Study in the Ireland</h2>
@@ -100,8 +100,8 @@ const StudyIrelandPage: React.FC = () => {
 </section>
 
         {/* Major Benefits */}
-        <section className=''>
-  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-left sm:mt-12 mt-16 py-5 w-[92%] mx-auto">Why Choose the Ireland for Your Education?</h2>
+        <section className='py-5'>
+  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-left mt-8 w-[92%] mx-auto">Why Choose the Ireland for Your Education?</h2>
   <div className="w-[92%] mx-auto grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
     {majorBenefits.map((benefit, index) => {
       // Define different light colors for each card
@@ -150,8 +150,8 @@ const StudyIrelandPage: React.FC = () => {
 </section>
 
         {/* Intakes in the UK */}
-<section className="bg-gray-100 w-full min-h-screen py-5 md:py-5 mt-12">
-  <div className="w-[92%] mx-auto ">
+<section className="bg-gray-100 w-full min-h-screen py-5">
+  <div className="w-[92%] mx-auto mt-8">
     
     {/* Desktop Table */}
     <div className="hidden md:block bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-lg mb-10">
@@ -297,8 +297,8 @@ const StudyIrelandPage: React.FC = () => {
 </section>
 
         {/* English Requirements */}
-        <section className=''>
-        <div className='py-5 mb-4 w-[92%] mx-auto mt-8 '>
+        <section className='py-5'>
+        <div className='w-[92%] mx-auto mt-8 '>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3  text-left ">English Proficiency Requirements</h2>
           <p className="text-sm text-gray-700 mb-4 text-left ">
             Teaching in Ireland is conducted through English, requiring all non-native applicants to demonstrate high competence. While universities often set their own targets, aiming for a B2+ or C1 level on the CEFR scale is recommended for competitive programs.</p>
@@ -328,7 +328,7 @@ const StudyIrelandPage: React.FC = () => {
 
         {/* Part-time Work Opportunities */}
 <section className="bg-gray-100 w-full py-5 ">
-  <div className="w-[92%] mx-auto mt-8 mb-4">
+  <div className="w-[92%] mx-auto mt-8">
     <div className="mb-8">
       <h2 className="text-2xl md:text-3xl  font-bold text-gray-900 mb-4">Earn While You Learn: Part-Time Work in the Ireland</h2>
       <p className="text-sm  text-gray-700">
@@ -410,7 +410,7 @@ const StudyIrelandPage: React.FC = () => {
 </section>
 
 {/* Quality Education & Benefits Section */}
-<section className='py-5 mt-12 w-[92%] mx-auto'>
+<section className='py-5 mt-8 w-[92%] mx-auto'>
   
   {/* 1. Quality Education - Image Left, Content Right */}
   <div className="flex flex-col md:flex-row gap-8 mb-8">
@@ -509,7 +509,7 @@ const StudyIrelandPage: React.FC = () => {
   </div>
 
   {/* 5. Post-Study Work Options - Image Left, Content Right */}
-  <div className="flex flex-col md:flex-row gap-8 mb-8 md:mb-0">
+  <div className="flex flex-col md:flex-row gap-8">
     {/* Image - 30% */}
     <div className="md:w-3/10 -mt-8 order-2 md:order-1">
       <img 
@@ -534,8 +534,8 @@ const StudyIrelandPage: React.FC = () => {
 </section>
 
         {/* Scholarships Section */}
-        <section className='w-full bg-gray-100 py-5 mt-8'>
-          <div className="w-[92%] mx-auto text-left mb-4 mt-12">
+        <section className='w-full bg-gray-100 py-5'>
+          <div className="w-[92%] mx-auto text-left mt-8">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Scholarships & Financial Aid in the Ireland</h2>
             <p className="text-sm md:text-base text-gray-700 text-left">
               Don't let tuition fees stand in the way of your ambitions. Ireland is committed to attracting global talent, providing millions of euros in funding annually. Our experts specialize in navigating the Irish "Higher Education Authority" (HEA) landscape to ensure you secure the best financial package possible.</p></div>
@@ -603,7 +603,7 @@ const StudyIrelandPage: React.FC = () => {
           </div>
           </section>
 
-<section className='mt-16'>
+<section className=''>
           <div className="bg-gradient-to-r from-blue-900 to-red-800  p-10 text-white text-center ">
             <h3 className="text-xl md:text-3xl font-bold mb-1">Your Ireland Success Story Starts Here</h3>
             <p className="text-sm md:text-med text-blue-100 mb-3 max-w-3xl mx-auto">

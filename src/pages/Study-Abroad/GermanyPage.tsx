@@ -56,7 +56,7 @@ const StudyGermanyPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-<section className="relative h-[50vh] sm:h-[76vh] md:h-[80vh] text-white overflow-hidden bg-white">
+<section className="relative h-[32vh] sm:h-[76vh] md:h-[80vh] text-white overflow-hidden bg-white">
   
   {/* Background Image Wrapper */}
   <div
@@ -80,8 +80,8 @@ const StudyGermanyPage: React.FC = () => {
 </section>
 
         {/* Study in UK - Overview */}
-       <section className="w-[80%] mx-auto scroll-mt-20">
-  <div className="flex justify-center py-5 md:mt-12">
+       <section className="w-[80%] mx-auto scroll-mt-20 py-5">
+  <div className="flex justify-center mt-8">
     <div className="bg-gradient-to-br from-blue-50 to-gray-50 rounded-2xl p-6 md:p-8  border border-blue-100 w-fit max-w-6xl mx-auto">
       <div className="md:text-center text-left">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 p-2">Study in  Germany</h2>
@@ -100,8 +100,8 @@ const StudyGermanyPage: React.FC = () => {
 </section>
 
         {/* Major Benefits */}
-        <section className=''>
-  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-left sm:mt-12 mt-16 py-5 w-[92%] mx-auto">Why Choose the Germany for Your Education?</h2>
+        <section className='py-5'>
+  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-left mt-8 mb-4 w-[92%] mx-auto">Why Choose the Germany for Your Education?</h2>
   <div className="w-[92%] mx-auto grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
     {majorBenefits.map((benefit, index) => {
       // Define different light colors for each card
@@ -150,8 +150,8 @@ const StudyGermanyPage: React.FC = () => {
 </section>
 
         {/* Intakes in the UK */}
-<section className="bg-gray-100 w-full min-h-screen py-5 md:py-5 mt-12">
-  <div className="w-[92%] mx-auto ">
+<section className="bg-gray-100 w-full min-h-screen py-5">
+  <div className="w-[92%] mx-auto mt-8">
     
     {/* Desktop Table */}
     <div className="hidden md:block bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-lg mb-10">
@@ -297,8 +297,8 @@ const StudyGermanyPage: React.FC = () => {
 </section>
 
         {/* English Requirements */}
-        <section className=''>
-        <div className='py-5 mb-4 w-[92%] mx-auto mt-8 '>
+        <section className='py-5'>
+        <div className='w-[92%] mx-auto mt-8'>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3  text-left ">English Proficiency Requirements for Studying in Germany</h2>
           <p className="text-sm text-gray-700 mb-4 text-left ">
             Most German universities require proof of English proficiency for admission to English-taught programs. While specific score requirements vary by university and program, aiming for these standard benchmarks will keep your options open.</p>
@@ -328,7 +328,7 @@ const StudyGermanyPage: React.FC = () => {
 
         {/* Part-time Work Opportunities */}
 <section className="bg-gray-100 w-full py-5 ">
-  <div className="w-[92%] mx-auto mt-8 mb-4">
+  <div className="w-[92%] mx-auto mt-8">
     <div className="mb-8">
       <h2 className="text-2xl md:text-3xl  font-bold text-gray-900 mb-4">Earn While You Learn: Part-Time Work in the Germany</h2>
       <p className="text-sm  text-gray-700">
@@ -406,7 +406,7 @@ const StudyGermanyPage: React.FC = () => {
 </section>
 
 {/* Quality Education & Benefits Section */}
-<section className='py-5 mt-12 w-[92%] mx-auto'>
+<section className='py-5 mt-8 w-[92%] mx-auto'>
   
   {/* 1. Quality Education - Image Left, Content Right */}
   <div className="flex flex-col md:flex-row gap-8 mb-8">
@@ -504,7 +504,7 @@ const StudyGermanyPage: React.FC = () => {
   </div>
 
   {/* 5. Post-Study Work Options - Image Left, Content Right */}
-  <div className="flex flex-col md:flex-row gap-8 mb-8 md:mb-0">
+  <div className="flex flex-col md:flex-row gap-8">
     {/* Image - 30% */}
     <div className="md:w-3/10 -mt-14 order-2 md:order-1">
       <img 
@@ -529,8 +529,8 @@ const StudyGermanyPage: React.FC = () => {
 </section>
 
         {/* Scholarships Section */}
-        <section className='w-full bg-gray-100 py-5 mt-8'>
-          <div className="w-[92%] mx-auto text-left mb-4 mt-12">
+        <section className='w-full bg-gray-100 py-5'>
+          <div className="w-[92%] mx-auto text-left mt-8 mb-4">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Scholarships & Financial Aid in the Germany</h2>
             <p className="text-sm md:text-base text-gray-700 text-left">
              Enjoy world-class education for (mostly) free. While tuition is often zero, Germany offers millions of Euros in stipends to cover your living costs. Our experts help you navigate the DAAD and university systems to secure your funding.</p></div>
@@ -593,7 +593,7 @@ const StudyGermanyPage: React.FC = () => {
           </div>
           </section>
 
-<section className='mt-16'>
+<section className='mt-'>
           <div className="bg-gradient-to-r from-blue-900 to-red-800  p-10 text-white text-center ">
             <h3 className="text-xl md:text-3xl font-bold mb-1">Your Germany Success Story Starts Here</h3>
             <p className="text-sm md:text-med text-blue-100 mb-3 max-w-3xl mx-auto">

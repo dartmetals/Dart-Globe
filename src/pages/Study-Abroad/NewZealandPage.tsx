@@ -59,7 +59,7 @@ const StudyNewZealandPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-<section className="relative h-[50vh] sm:h-[76vh] md:h-[80vh] text-white overflow-hidden bg-white">
+<section className="relative h-[32vh] sm:h-[76vh] md:h-[80vh] text-white overflow-hidden bg-white">
   
   {/* Background Image Wrapper */}
   <div
@@ -83,8 +83,8 @@ const StudyNewZealandPage: React.FC = () => {
 </section>
 
         {/* Study in UK - Overview */}
-       <section className="w-[80%] mx-auto scroll-mt-20">
-  <div className="flex justify-center py-5 md:mt-12">
+       <section className="w-[80%] mx-auto scroll-mt-20 py-5">
+  <div className="flex justify-center mt-8">
     <div className="bg-gradient-to-br from-blue-50 to-gray-50 rounded-2xl p-6 md:p-8  border border-blue-100 w-fit max-w-6xl mx-auto">
       <div className="text-left md:text-center ">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 p-2">Study in the New Zealand</h2>
@@ -103,8 +103,8 @@ const StudyNewZealandPage: React.FC = () => {
 </section>
 
         {/* Major Benefits */}
-        <section className=''>
-  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-left sm:mt-12 mt-16 py-5 w-[92%] mx-auto">Why Choose the New Zealand for Your Education?</h2>
+        <section className='py-5'>
+  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-left mt-8 w-[92%] mx-auto">Why Choose the New Zealand for Your Education?</h2>
   <div className="w-[92%] mx-auto grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
     {majorBenefits.map((benefit, index) => {
       // Define different light colors for each card
@@ -153,8 +153,8 @@ const StudyNewZealandPage: React.FC = () => {
 </section>
 
         {/* Intakes in the UK */}
-<section className="bg-gray-100 w-full min-h-screen py-5 md:py-5 mt-12">
-  <div className="w-[92%] mx-auto ">
+<section className="bg-gray-100 w-full min-h-screen py-5">
+  <div className="w-[92%] mx-auto mt-8">
     
     {/* Desktop Table */}
     <div className="hidden md:block bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-lg mb-10">
@@ -303,8 +303,8 @@ const StudyNewZealandPage: React.FC = () => {
 </section>
 
         {/* English Requirements */}
-        <section className=''>
-        <div className='py-5 mb-4 w-[92%] mx-auto mt-8 '>
+        <section className='py-5'>
+        <div className='w-[92%] mx-auto mt-8 '>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3  text-left ">English Proficiency Requirements for New Zealand</h2>
           <p className="text-sm text-gray-700 mb-4 text-left ">
            To secure university admission and a student visa, you must generally meet the following minimum score benchmarks:</p>
@@ -334,7 +334,7 @@ const StudyNewZealandPage: React.FC = () => {
 
         {/* Part-time Work Opportunities */}
 <section className="bg-gray-100 w-full py-5 ">
-  <div className="w-[92%] mx-auto mt-8 mb-4">
+  <div className="w-[92%] mx-auto mt-8">
     <div className="mb-8">
       <h2 className="text-2xl md:text-3xl  font-bold text-gray-900 mb-4">Earn While You Learn: Part-Time Work in the New Zealand</h2>
       <p className="text-sm  text-gray-700">
@@ -410,7 +410,7 @@ const StudyNewZealandPage: React.FC = () => {
 </section>
 
 {/* Quality Education & Benefits Section */}
-<section className='py-5 mt-12 w-[92%] mx-auto'>
+<section className='py-5 mt-8 w-[92%] mx-auto'>
   
   {/* 1. Quality Education - Image Left, Content Right */}
   <div className="flex flex-col md:flex-row gap-8 mb-8">
@@ -509,7 +509,7 @@ const StudyNewZealandPage: React.FC = () => {
   </div>
 
   {/* 5. Post-Study Work Options - Image Left, Content Right */}
-  <div className="flex flex-col md:flex-row gap-8 mb-8 md:mb-0">
+  <div className="flex flex-col md:flex-row gap-8">
     {/* Image - 30% */}
     <div className="md:w-3/10 -mt-4 order-2 md:order-1">
       <img 
@@ -534,8 +534,8 @@ const StudyNewZealandPage: React.FC = () => {
 </section>
 
         {/* Scholarships Section */}
-        <section className='w-full bg-gray-100 py-5 mt-8'>
-          <div className="w-[92%] mx-auto text-left mb-4 mt-12">
+        <section className='w-full bg-gray-100 py-5'>
+          <div className="w-[92%] mx-auto text-left mt-8">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Scholarships & Financial Aid in the New Zealand</h2>
             <p className="text-sm md:text-base text-gray-700 text-left">
               Experience world-class education with robust financial support. New Zealand offers millions of NZD in government and university awards to help international students thrive.</p></div>
@@ -596,7 +596,7 @@ const StudyNewZealandPage: React.FC = () => {
           </div>
           </section>
 
-<section className='mt-16'>
+<section className=''>
           <div className="bg-gradient-to-r from-blue-900 to-red-800  p-10 text-white text-center ">
             <h3 className="text-xl md:text-3xl font-bold mb-1">Your New Zealand Success Story Starts Here</h3>
             <p className="text-sm md:text-med text-blue-100 mb-3 max-w-3xl mx-auto">
