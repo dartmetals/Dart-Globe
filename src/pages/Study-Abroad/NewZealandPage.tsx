@@ -74,7 +74,7 @@ const StudyNewZealandPage: React.FC = () => {
   {/* Content */}
   <div className="relative z-10 h-full container mx-auto px-6 flex items-center">
   <div className="max-w-xl text-left sm:text-left md:text-left">
-    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 max-w-3xl">
+    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 max-w-3xl text-black md:text-white">
   Study in <br />
   <span className="block ml-12 sm:ml-12 md:ml-16 lg:ml-16 mt-2">New Zealand</span>
 </h1>
