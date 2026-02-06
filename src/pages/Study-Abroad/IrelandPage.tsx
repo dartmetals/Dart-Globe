@@ -72,7 +72,7 @@ const StudyIrelandPage: React.FC = () => {
   {/* Content */}
   <div className="relative z-10 h-full container mx-auto px-6 flex items-center">
   <div className="max-w-xl text-left sm:text-left md:text-left">
-    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 max-w-3xl text-black">
+    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 max-w-3xl text-black md:text-white">
   Study in <br />
   <span className="block ml-12 sm:ml-12 md:ml-16 lg:ml-16 mt-2">Ireland</span>
 </h1>
@@ -81,7 +81,7 @@ const StudyIrelandPage: React.FC = () => {
 </section>
 
         {/* Study in UK - Overview */}
-       <section className="w-[80%] mx-auto scroll-mt-20 py-">
+       <section className="w-[80%] mx-auto scroll-mt-20 py-5">
   <div className="flex justify-center mt-8">
     <div className="bg-gradient-to-br from-blue-50 to-gray-50 rounded-2xl p-6 md:p-8  border border-blue-100 w-fit max-w-6xl mx-auto">
       <div className="text-center ">

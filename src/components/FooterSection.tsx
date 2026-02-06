@@ -166,7 +166,7 @@ const Footer: React.FC = () => {
             </h3>
 
             {/* Two Addresses Side by Side */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-2 gap-4 mb-6">
               {/* Bangalore Address */}
               <div className="flex items-start space-x-3 group">
                 {/* <div className="p-2 bg-gray-200 rounded-lg flex-shrink-0">
@@ -203,7 +203,7 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Phone & Email Below Addresses */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               {/* Phone Number */}
               <div className="flex items-center space-x-3 group">
                 {/* <div className="p-2 bg-gray-200 rounded-lg">
