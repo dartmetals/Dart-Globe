@@ -242,31 +242,31 @@ const Footer: React.FC = () => {
           
           <div className="flex flex-wrap justify-center gap-6">
             <button 
-              onClick={() => handlePageNavigation('/privacy-policy')} 
+              onClick={() => handlePageNavigation('/')} 
               className="text-gray-400 hover:text-gray-600 text-sm transition-colors duration-300"
             >
               Privacy Policy
             </button>
             <button 
-              onClick={() => handlePageNavigation('/terms')} 
+              onClick={() => handlePageNavigation('/')} 
               className="text-gray-400 hover:text-gray-600 text-sm transition-colors duration-300"
             >
               Terms of Service
             </button>
             <button 
-              onClick={() => handlePageNavigation('/cookies')} 
+              onClick={() => handlePageNavigation('/')} 
               className="text-gray-400 hover:text-gray-600 text-sm transition-colors duration-300"
             >
               Cookie Policy
             </button>
             <button 
-              onClick={() => handlePageNavigation('/disclaimer')} 
+              onClick={() => handlePageNavigation('/')} 
               className="text-gray-400 hover:text-gray-600 text-sm transition-colors duration-300"
             >
               Disclaimer
             </button>
             <button 
-              onClick={() => handlePageNavigation('/sitemap')} 
+              onClick={() => handlePageNavigation('/')} 
               className="text-gray-400 hover:text-gray-600 text-sm transition-colors duration-300"
             >
               Sitemap
