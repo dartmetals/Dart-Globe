@@ -81,7 +81,7 @@ const StudyIrelandPage: React.FC = () => {
 </section>
 
         {/* Study in UK - Overview */}
-       <section className="w-[80%] mx-auto scroll-mt-20 py-5">
+       <section className="w-[80%] mx-auto scroll-mt-20 md:py-5">
   <div className="flex justify-center mt-8">
     <div className="bg-gradient-to-br from-blue-50 to-gray-50 rounded-2xl p-6 md:p-8  border border-blue-100 w-fit max-w-6xl mx-auto">
       <div className="text-center ">
