@@ -1,4 +1,3 @@
-// Header.tsx
 import { ChevronDown, MessageCircleMore, X, Mail, Phone } from 'lucide-react';
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
@@ -299,11 +298,6 @@ useEffect(() => {
     }
   };
 
-  // const renderIcon = (item: typeof contactItems[0]) => {
-  //   const IconComponent = item.icon;
-  //   return <IconComponent size={isMobile ? 22 : 24} className={item.iconColor} />;
-  // };
-
   return (
     <>
       <div 
@@ -371,59 +365,41 @@ useEffect(() => {
 
       <header 
         className={`fixed z-40 transition-all duration-500 ${
-          contactHeaderVisible ? 'top-9 md:top-8' : 'top-0'
-        } ${
           scrolled && window.innerWidth < 1024 
-            ? 'bg-white/30 backdrop-blur-lg left-1/2 -translate-x-1/2' 
-            : 'left-0 w-full'
+            ? 'bottom-4 left-1/2 -translate-x-1/2 w-[90%] bg-white/30 backdrop-blur-lg rounded-full shadow-lg' 
+            : scrolled && window.innerWidth >= 1024
+            ? 'top-0 left-0 w-full bg-white/30 backdrop-blur-lg shadow-lg'
+            : `top-0 left-0 w-full ${contactHeaderVisible ? 'top-9 md:top-8' : 'top-0'}`
         }`}
         style={{
-          width: scrolled && window.innerWidth < 1024 ? '90%' : '100%',
-          top: scrolled && window.innerWidth < 1024 ? '1rem' : (contactHeaderVisible ? '2.25rem' : '0'),
-          borderRadius: scrolled && window.innerWidth < 1024 ? '9999px' : '0',
-          background: scrolled && window.innerWidth < 1024 
+          background: scrolled 
             ? 'rgba(255, 255, 255, 0.3)'
             : window.innerWidth < 1024
             ? 'white'
-            : scrolled
-            ? 'rgba(255, 255, 255, 0.3)'
             : 'white',
-          backdropFilter: scrolled && window.innerWidth < 1024 
-            ? 'blur(10px)'
-            : window.innerWidth < 1024
-            ? 'none'
-            : scrolled
-            ? 'blur(10px)'
-            : 'none',
-          boxShadow: scrolled && window.innerWidth < 1024 
+          backdropFilter: scrolled ? 'blur(10px)' : 'none',
+          boxShadow: scrolled 
             ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
             : '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)'
         }}
       >
-        <div className={`w-full mx-auto ${
-          scrolled && window.innerWidth < 1024 
-            ? 'bg-transparent' 
-            : 'bg-transparent'
-        } px-4 sm:px-6 lg:px-6 transition-all duration-300`}>
-          <div className={`md:py-2 transition-all duration-300 ${
-            scrolled && window.innerWidth < 1024 ? 'py-2' : ''
-          }`}>
+        <div className={`w-full mx-auto px-4 sm:px-6 lg:px-6 transition-all duration-300`}>
+          <div className={`transition-all duration-300 ${scrolled && window.innerWidth < 1024 ? 'py-3' : 'py-2'}`}>
             <div className="flex justify-between items-center">
               <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
-  <div className="flex items-center">
-    <img 
-      src="/dg-logo.png" 
-      alt="Dart Globe Logo" 
-      className={`transition-all duration-300 ${
-        scrolled && window.innerWidth < 1024 ? 'h-8 w-auto' : 'h-18 w-auto ml-6'
-      }`}
-    />
-  </div>
-</div>
+                <div className="flex items-center">
+                  <img 
+                    src="/dg-logo.png" 
+                    alt="Dart Globe Logo" 
+                    className={`transition-all duration-300 ${
+                      scrolled && window.innerWidth < 1024 ? 'h-8 w-auto' : 'h-18 w-auto ml-6'
+                    }`}
+                  />
+                </div>
+              </div>
 
-              <nav className={`hidden lg:flex items-center space-x-5 ${
-                scrolled && window.innerWidth < 1024 ? 'hidden' : ''
-              }`}>
+              {/* Desktop Navigation */}
+              <nav className={`hidden lg:flex items-center space-x-5`}>
                 {navLinks.map((link) =>
                   link.name === 'Study Abroad' ? (
                     <div key={link.name} className="relative group">
@@ -431,7 +407,6 @@ useEffect(() => {
                         Study Abroad
                         <ChevronDown size={18} className="group-hover:rotate-180 transition-transform" />
                       </button>
-
                       <div className="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all border border-gray-100">
                         <ul className="py-2">
                           {studyAbroadCountries.map((country, index) => (
@@ -472,24 +447,99 @@ useEffect(() => {
                 )}
               </nav>
 
-              <button
-                className={`lg:hidden p-2 rounded-lg hover:bg-blue-100 transition-all duration-300 ${
-                  scrolled && window.innerWidth < 1024 ? 'p-1.5' : ''
-                }`}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
-                <div className="space-y-1.5">
-                  <span className={`block bg-blue-700 transition-all duration-300 ${
-                    scrolled && window.innerWidth < 1024 ? 'w-5 h-0.5' : 'w-6 h-0.5'
-                  }`}></span>
-                  <span className={`block bg-blue-700 transition-all duration-300 ${
-                    scrolled && window.innerWidth < 1024 ? 'w-5 h-0.5' : 'w-6 h-0.5'
-                  }`}></span>
-                  <span className={`block bg-blue-700 transition-all duration-300 ${
-                    scrolled && window.innerWidth < 1024 ? 'w-5 h-0.5' : 'w-6 h-0.5'
-                  }`}></span>
+              {/* Mobile/Tablet: Show popup notification inside header when scrolled */}
+              {scrolled && window.innerWidth < 1024 && showMobileNotification ? (
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
+                    {contactItems.map((item) => {
+                      const IconComponent = item.icon;
+                      return (
+                        <div key={item.label} className="relative group">
+                          <button
+                            onClick={() => handleContactClick(item)}
+                            className={`w-8 h-8 rounded-full bg-white/30 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow hover:shadow-lg border-2 ${item.borderColor} ${item.hoverBorderColor}`}
+                            title={item.label}
+                          >
+                            <IconComponent size={16} className={item.iconColor} />
+                          </button>
+                          <div className="absolute top-full right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <div className="bg-white/90 px-2 py-1 rounded-lg shadow-md border border-gray-200 whitespace-nowrap">
+                              <span className="text-xs font-medium text-gray-700">
+                                {item.label}
+                              </span>
+                            </div>
+                            <div className="absolute bottom-full right-2 -mb-1 border-4 border-transparent border-b-white/90"></div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <button
+                    onClick={() => {
+                      setShowPopup(true);
+                      setShowMobileNotification(false);
+                    }}
+                    className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-xl"
+                    title="Register for Free Consultation"
+                  >
+                    <img 
+                      src="/popup-icon2.png" 
+                      alt="Free Consultation" 
+                      className="w-4 h-4 object-contain"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        const parent = e.currentTarget.parentElement;
+                        if (parent) {
+                          const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                          svg.setAttribute('class', 'w-4 h-4 text-white');
+                          svg.setAttribute('fill', 'none');
+                          svg.setAttribute('viewBox', '0 0 24 24');
+                          svg.setAttribute('stroke', 'currentColor');
+                          
+                          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                          path.setAttribute('stroke-linecap', 'round');
+                          path.setAttribute('stroke-linejoin', 'round');
+                          path.setAttribute('stroke-width', '2');
+                          path.setAttribute('d', 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z');
+                          
+                          svg.appendChild(path);
+                          parent.appendChild(svg);
+                        }
+                      }}
+                    />
+                  </button>
+                  <button
+                    className="p-2 rounded-lg hover:bg-blue-100 transition-all duration-300"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  >
+                    <div className="space-y-1">
+                      <span className="block w-5 h-0.5 bg-blue-700"></span>
+                      <span className="block w-5 h-0.5 bg-blue-700"></span>
+                      <span className="block w-5 h-0.5 bg-blue-700"></span>
+                    </div>
+                  </button>
                 </div>
-              </button>
+              ) : (
+                /* Regular mobile menu button */
+                <button
+                  className={`lg:hidden p-2 rounded-lg hover:bg-blue-100 transition-all duration-300 ${
+                    scrolled && window.innerWidth < 1024 ? 'p-2' : ''
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                >
+                  <div className="space-y-1.5">
+                    <span className={`block bg-blue-700 transition-all duration-300 ${
+                      scrolled && window.innerWidth < 1024 ? 'w-5 h-0.5' : 'w-6 h-0.5'
+                    }`}></span>
+                    <span className={`block bg-blue-700 transition-all duration-300 ${
+                      scrolled && window.innerWidth < 1024 ? 'w-5 h-0.5' : 'w-6 h-0.5'
+                    }`}></span>
+                    <span className={`block bg-blue-700 transition-all duration-300 ${
+                      scrolled && window.innerWidth < 1024 ? 'w-5 h-0.5' : 'w-6 h-0.5'
+                    }`}></span>
+                  </div>
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -512,12 +562,12 @@ useEffect(() => {
             
             <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center flex-shrink-0">
               <div className="flex items-center space-x-2">
-  <img 
-    src="/dg-logo.png" 
-    alt="Dart Globe Logo" 
-    className="h-16 w-auto"
-  />
-</div>
+                <img 
+                  src="/dg-logo.png" 
+                  alt="Dart Globe Logo" 
+                  className="h-16 w-auto"
+                />
+              </div>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-2 rounded-full hover:bg-gray-100 transition-colors"
@@ -711,7 +761,7 @@ useEffect(() => {
         </div>
       )}
 
-      <div className="fixed bottom-7 md:bottom-4 right-0 z-50">
+      <div className="fixed bottom-7 right-0 z-50">
         <div className="flex flex-col items-end gap-3 p-2">
 {/* {showFloatingIcon && !isMobile && (
   <div className="flex flex-col items-end gap-2 mb-2">
@@ -759,7 +809,7 @@ useEffect(() => {
   </div>
 )} */}
 
-          {showMobileNotification && isMobile && (
+          {/* {showMobileNotification && isMobile && (
   <div className="fixed bottom-0 left-0 right-0 z-[9997] bg-black border-t border-gray-200 animate-slideUpFromBottom">
     <div className="max-w-7xl mx-auto px-4">
       <div className="py-1">
@@ -767,14 +817,14 @@ useEffect(() => {
           <div className="flex items-center space-x-2">
             <div className="w-4 h-4 flex items-center justify-center">
               <img 
-                src="/popup-icon.png" 
+                src="/popup-icon2.png" 
                 alt="Free Consultation" 
                 className="w-4 h-4 object-contain"
-                onError={(e) => {
-                  // Fallback to SVG if image doesn't load
-                  e.currentTarget.style.display = 'none';
-                  // Create SVG fallback
-                  const parent = e.currentTarget.parentElement;
+                onError={(e) => { */}
+                  {/* // Fallback to SVG if image doesn't load */}
+                  {/* e.currentTarget.style.display = 'none'; */}
+                  {/* // Create SVG fallback */}
+                  {/* const parent = e.currentTarget.parentElement;
                   if (parent) {
                     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
                     svg.setAttribute('class', 'w-4 h-4 text-white');
@@ -812,213 +862,134 @@ useEffect(() => {
         </div>
       </div>
     </div>
+  </div> */}
+{/* )} */}
+
+{/* Mobile Notification Banner - Floating header style */}
+{showMobileNotification && isMobile && !scrolled && (
+  <div 
+    className="fixed left-1/2 -translate-x-1/2 bottom-4 z-[9997] w-[90%] bg-white/30 backdrop-blur-lg rounded-full shadow-lg transition-all duration-500"
+    style={{
+      background: 'rgba(255, 255, 255, 0.3)',
+      backdropFilter: 'blur(10px)',
+    }}
+  >
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="py-2">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            {/* Contact icons inside notification */}
+            <div className="flex items-center gap-3">
+              {contactItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <div key={item.label} className="relative group">
+                    <button
+                      onClick={() => handleContactClick(item)}
+                      className={`w-9 h-9 rounded-full bg-white/30 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow hover:shadow-lg border-2 ${item.borderColor} ${item.hoverBorderColor}`}
+                      title={item.label}
+                    >
+                      <IconComponent size={18} className={item.iconColor} />
+                    </button>
+                    <div className="absolute bottom-full right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                      <div className="bg-white/90 px-3 py-1.5 rounded-lg shadow-md border border-gray-200 whitespace-nowrap">
+                        <span className="text-xs font-medium text-gray-700">
+                          {item.label}
+                        </span>
+                      </div>
+                      <div className="absolute top-full right-2 -mt-1 border-4 border-transparent border-t-white/90"></div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          
+          <button
+            onClick={() => {
+              setShowPopup(true);
+              setShowMobileNotification(false);
+            }}
+            className="px-5 py-2 font-semibold rounded-lg transition-colors text-sm bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700"
+          >
+            Register
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 )}
           
-          {/* Desktop: Vertical contact icons with popup icon below */}
-<div className="hidden md:flex flex-col items-end fixed bottom-7 right-0 z-50 gap-3 p-2">
-  {/* Contact icons - vertical stack */}
-  <div className="flex flex-col items-end gap-3 mb-3">
-    {contactItems.map((item) => {
-  const IconComponent = item.icon;
-  return (
-    <div key={item.label} className="relative group">
-      <button
-        onClick={() => handleContactClick(item)}
-        className={`w-8 h-8 rounded-full bg-white/30 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow hover:shadow-lg border-2 ${item.borderColor} ${item.hoverBorderColor}`}
-        title={item.label}
-      >
-        <IconComponent size={20} className={item.iconColor} />
-      </button>
-      <div className="absolute right-full top-1/2 -translate-y-1/2 mr-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-        <div className="bg-white/90 px-3 py-1.5 rounded-lg shadow-md border border-gray-200 whitespace-nowrap">
-          <span className="text-xs font-medium text-gray-700">
-            {item.label}
-          </span>
-        </div>
-        <div className="absolute top-1/2 left-full -translate-y-1/2 -ml-1 border-4 border-transparent border-l-white/90"></div>
-      </div>
-    </div>
-  );
-})}
-  </div>
-
-  {/* Popup notification icon - below contact icons */}
-  {showFloatingIcon && (
-    <div className="flex flex-col items-end gap-2">
-      <button
-        onClick={() => {
-          setShowPopup(true);
-          setShowFloatingIcon(false);
-        }}
-        className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-xl animate-bounce"
-        title="Register for Free Consultation"
-      >
-        <img 
-          src="/popup-icon.png" 
-          alt="Free Consultation" 
-          className="w-8 h-8 object-contain"
-          onError={(e) => {
-            e.currentTarget.style.display = 'none';
-            const parent = e.currentTarget.parentElement;
-            if (parent) {
-              const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-              svg.setAttribute('class', 'w-8 h-8 text-white');
-              svg.setAttribute('fill', 'none');
-              svg.setAttribute('viewBox', '0 0 24 24');
-              svg.setAttribute('stroke', 'currentColor');
-              
-              const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-              path.setAttribute('stroke-linecap', 'round');
-              path.setAttribute('stroke-linejoin', 'round');
-              path.setAttribute('stroke-width', '2');
-              path.setAttribute('d', 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z');
-              
-              svg.appendChild(path);
-              parent.appendChild(svg);
-            }
-          }}
-        />
-      </button>
-      <div className="bg-white/90 px-2 rounded-lg shadow-md border border-gray-200 mr-1">
-        <span className="text-xs font-medium text-purple-700 whitespace-nowrap">
-          Free Consultation
-        </span>
-      </div>
-    </div>
-  )}
-</div>
-
-{/* Mobile/Tab: Original horizontal layout */}
-<div className="md:hidden fixed bottom-7 right-0 z-50">
-  <div className="flex flex-col items-end gap-3 p-2">
-    {/* Mobile notification banner */}
-    {showMobileNotification && (
-      <div className="fixed bottom-0 left-0 right-0 z-[9997] bg-black border-t border-gray-200 animate-slideUpFromBottom">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="py-1">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center space-x-2">
-                <div className="w-4 h-4 flex items-center justify-center">
-                  <img 
-                    src="/popup-icon.png" 
-                    alt="Free Consultation" 
-                    className="w-4 h-4 object-contain"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                      const parent = e.currentTarget.parentElement;
-                      if (parent) {
-                        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                        svg.setAttribute('class', 'w-4 h-4 text-white');
-                        svg.setAttribute('fill', 'none');
-                        svg.setAttribute('viewBox', '0 0 24 24');
-                        svg.setAttribute('stroke', 'currentColor');
-                        
-                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                        path.setAttribute('stroke-linecap', 'round');
-                        path.setAttribute('stroke-linejoin', 'round');
-                        path.setAttribute('stroke-width', '2');
-                        path.setAttribute('d', 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z');
-                        
-                        svg.appendChild(path);
-                        parent.appendChild(svg);
-                      }
-                    }}
-                  />
+          {/* Contact icons - vertical stack for desktop only */}
+          <div className="hidden md:flex flex-col items-end gap-3 mb-3">
+            {contactItems.map((item) => {
+              const IconComponent = item.icon;
+              return (
+                <div key={item.label} className="relative group">
+                  <button
+                    onClick={() => handleContactClick(item)}
+                    className={`w-12 h-12 rounded-full bg-white/30 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow hover:shadow-lg border-2 ${item.borderColor} ${item.hoverBorderColor}`}
+                    title={item.label}
+                  >
+                    <IconComponent size={22} className={item.iconColor} />
+                  </button>
+                  <div className="absolute right-full top-1/2 -translate-y-1/2 mr-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <div className="bg-white/90 px-3 py-1.5 rounded-lg shadow-md border border-gray-200 whitespace-nowrap">
+                      <span className="text-xs font-medium text-gray-700">
+                        {item.label}
+                      </span>
+                    </div>
+                    <div className="absolute top-1/2 left-full -translate-y-1/2 -ml-1 border-4 border-transparent border-l-white/90"></div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-sm text-white">Free Consultation Available</h3>
-                </div>
-              </div>
-              <div className="flex items-center space-x-1">
-                <button
-                  onClick={() => {
-                    setShowPopup(true);
-                    setShowMobileNotification(false);
-                  }}
-                  className="px-3 py-1 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors text-xs"
-                >
-                  Register
-                </button>
-              </div>
-            </div>
+              );
+            })}
           </div>
-        </div>
-      </div>
-    )}
 
-    {/* Floating popup icon for mobile */}
-    {/* {showFloatingIcon && (
-      <div className="flex flex-col items-end gap-2 mb-2">
-        <button
-          onClick={() => {
-            setShowPopup(true);
-            setShowFloatingIcon(false);
-          }}
-          className="w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-xl animate-bounce"
-          title="Register for Free Consultation"
-        >
-          <img 
-            src="/popup-icon.png" 
-            alt="Free Consultation" 
-            className="w-8 h-8 object-contain"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              const parent = e.currentTarget.parentElement;
-              if (parent) {
-                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                svg.setAttribute('class', 'w-6 h-6 text-white');
-                svg.setAttribute('fill', 'none');
-                svg.setAttribute('viewBox', '0 0 24 24');
-                svg.setAttribute('stroke', 'currentColor');
-                
-                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                path.setAttribute('stroke-linecap', 'round');
-                path.setAttribute('stroke-linejoin', 'round');
-                path.setAttribute('stroke-width', '2');
-                path.setAttribute('d', 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z');
-                
-                svg.appendChild(path);
-                parent.appendChild(svg);
-              }
-            }}
-          />
-        </button>
-        <div className="bg-white/90 px-3 py-1 rounded-lg shadow-md border border-gray-200 mr-1">
-          <span className="text-xs font-medium text-purple-700 whitespace-nowrap">
-            Free Consultation
-          </span>
-        </div>
-      </div>
-    )} */}
-    
-    {/* Horizontal contact icons for mobile */}
-    <div className="flex items-center gap-3">
-      {contactItems.map((item) => {
-        const IconComponent = item.icon;
-        return (
-          <div key={item.label} className="relative group">
-            <button
-              onClick={() => handleContactClick(item)}
-              className={`w-12 h-12 rounded-full bg-white/30 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow hover:shadow-lg border-2 ${item.borderColor} ${item.hoverBorderColor}`}
-              title={item.label}
-            >
-              <IconComponent size={22} className={item.iconColor} />
-            </button>
-            <div className="absolute bottom-full right-0 mb-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-              <div className="bg-white/90 px-3 py-1.5 rounded-lg shadow-md border border-gray-200 whitespace-nowrap">
-                <span className="text-xs font-medium text-gray-700">
-                  {item.label}
+          {/* Popup notification icon - below contact icons for desktop */}
+          {showFloatingIcon && (
+            <div className="hidden md:flex flex-col items-end gap-2">
+              <button
+                onClick={() => {
+                  setShowPopup(true);
+                  setShowFloatingIcon(false);
+                }}
+                className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-xl animate-bounce"
+                title="Register for Free Consultation"
+              >
+                <img 
+                  src="/popup-icon2.png" 
+                  alt="Free Consultation" 
+                  className="w-6 h-6 object-contain"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    const parent = e.currentTarget.parentElement;
+                    if (parent) {
+                      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                      svg.setAttribute('class', 'w-6 h-6 text-white');
+                      svg.setAttribute('fill', 'none');
+                      svg.setAttribute('viewBox', '0 0 24 24');
+                      svg.setAttribute('stroke', 'currentColor');
+                      
+                      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                      path.setAttribute('stroke-linecap', 'round');
+                      path.setAttribute('stroke-linejoin', 'round');
+                      path.setAttribute('stroke-width', '2');
+                      path.setAttribute('d', 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z');
+                      
+                      svg.appendChild(path);
+                      parent.appendChild(svg);
+                    }
+                  }}
+                />
+              </button>
+              <div className="bg-white/90 px-2 rounded-lg shadow-md border border-gray-200 mr-1">
+                <span className="text-xs font-medium text-purple-700 whitespace-nowrap">
+                  Free Consultation
                 </span>
               </div>
-              <div className="absolute top-full right-3 -mt-1 border-4 border-transparent border-t-white/90"></div>
             </div>
-          </div>
-        );
-      })}
-    </div>
-  </div>
-</div>
+          )}
         </div>
       </div>
 

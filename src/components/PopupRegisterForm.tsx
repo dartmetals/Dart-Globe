@@ -157,17 +157,22 @@ const PopupRegisterForm: React.FC<PopupRegisterFormProps> = ({ isOpen, onClose }
   return (
     <div 
       className={`fixed inset-0 z-[9999] flex items-center justify-center p-4 ${
-        animateToIcon ? 'animate-none' : ''
+        animateToIcon ? 'pointer-events-none' : ''
       }`}
       onClick={handleCloseWithAnimation}
     >
       {/* Animated popup container */}
       <div 
-        className={`relative ${
+        className={`relative transition-all duration-500 ease-in-out ${
           animateToIcon 
-            ? 'fixed bottom-4 right-4 z-[10000] animate-morphToIcon' 
-            : `w-full max-w-2xl h-[80vh] ${isClosing ? 'animate-morphOut' : 'animate-slideUp'}`
+            ? 'fixed bottom-4 right-4 w-12 h-12' 
+            : 'w-full max-w-2xl h-[80vh]'
         }`}
+        style={{
+          transition: 'all 500ms cubic-bezier(0.4, 0, 0.2, 1)',
+          transform: animateToIcon ? 'scale(0.5)' : 'scale(1)',
+          opacity: animateToIcon ? 0 : 1,
+        }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Main popup content */}
@@ -487,7 +492,7 @@ const PopupRegisterForm: React.FC<PopupRegisterFormProps> = ({ isOpen, onClose }
           {animateToIcon && (
             <div className="flex items-center justify-center w-full h-full">
               <img 
-                src="/popup-icon.png" 
+                src="/popup-icon2.png" 
                 alt="Free Consultation" 
                 className="w-6 h-6 object-contain"
                 onError={(e) => {
