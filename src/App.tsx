@@ -33,6 +33,7 @@ import VisaAssistance from './pages/Services/VisaAssistance';
 import FAQPage from './pages/FAQPage';
 import ContactForm from './components/ContactForm';
 import ScrollToTop from './components/Animations/ScrollToTop';
+// import BlogSection from './components/BlogSection';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
         <CallToActionSection/>
         <WhyChooseUsSection/>
         <TestimonialsSection/>
+        {/* <BlogSection/> */}
         <FAQ/>
       </div> }/>
       <Route path='/about-dartglobe' element={<AboutPage/>}/>

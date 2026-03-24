@@ -265,23 +265,23 @@ useEffect(() => {
     { 
       icon: Phone, 
       label: 'Contact', 
-      href: 'tel:+91 9133329955',
+      href: 'tel:+44 7385 649648',
       iconColor: 'text-green-600',
       borderColor: 'border-green-600',
       hoverBorderColor: 'hover:border-green-700',
       onClick: () => {
-        window.location.href = 'tel:+91 9133329955';
+        window.location.href = 'tel:+44 7385 649648';
       }
     },
     { 
       icon: MessageCircleMore, 
       label: 'WhatsApp', 
-      href: 'https://wa.me/+91 9133329955',
+      href: 'https://wa.me/+44 7385 649648',
       iconColor: 'text-green-500',
       borderColor: 'border-green-500',
       hoverBorderColor: 'hover:border-green-600',
       onClick: () => {
-        window.open('https://wa.me/919133329955?text=Hello%20DartGlobe,%20I%20would%20like%20to%20know%20more%20about%20your%20services.', '_blank');
+        window.open('https://wa.me/447385649648?text=Hello%20DartGlobe,%20I%20would%20like%20to%20know%20more%20about%20your%20services.', '_blank');
       }
     }
   ];
@@ -321,11 +321,11 @@ useEffect(() => {
                 </a>
                 
                 <a 
-                  href="tel:+91 9133329955" 
+                  href="tel:+44 7385 649648" 
                   className="flex items-center gap-2 text-sm text-gray-700 hover:text-blue-600 transition-colors"
                 >
                   <Phone size={16} className="text-green-600" />
-                  <span className='text-white font-semibold'>+91 91333 29955</span>
+                  <span className='text-white font-semibold'>+44 7385 649648</span>
                 </a>
               </div>
               
@@ -958,9 +958,9 @@ useEffect(() => {
                 title="Register for Free Consultation"
               >
                 <img 
-                  src="/popup-icon2.png" 
+                  src="/popup-icon3.png" 
                   alt="Free Consultation" 
-                  className="w-6 h-6 object-contain"
+                  className="w-8 h-10 object-contain"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                     const parent = e.currentTarget.parentElement;

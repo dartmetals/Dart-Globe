@@ -185,6 +185,7 @@ London, E12 6SL
       </div>
       <div className="min-w-0 flex-1">
         <p className="font-medium text-sm text-gray-700">Contact Number</p>
+        <p className='text-gray-600 text-xs break-all'>+44 7385 649648</p>
         <p className="text-gray-600 text-xs break-all">+91 91333 29955</p>
       </div>
     </div>

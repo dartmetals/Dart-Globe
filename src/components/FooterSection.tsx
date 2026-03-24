@@ -211,6 +211,7 @@ const Footer: React.FC = () => {
                 </div> */}
                 <div>
                   <p className="font-semibold text-gray-400 hover:text-gray-600">Phone Number</p>
+                  <p className='text-gray-400'>+44 7385 649648</p>
                   <p className="text-gray-400">+91 91333 29955</p>
                 </div>
               </div>

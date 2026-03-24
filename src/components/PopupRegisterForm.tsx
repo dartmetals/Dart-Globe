@@ -492,7 +492,7 @@ const PopupRegisterForm: React.FC<PopupRegisterFormProps> = ({ isOpen, onClose }
           {animateToIcon && (
             <div className="flex items-center justify-center w-full h-full">
               <img 
-                src="/popup-icon2.png" 
+                src="/popup-icon3.png" 
                 alt="Free Consultation" 
                 className="w-6 h-6 object-contain"
                 onError={(e) => {
