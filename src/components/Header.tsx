@@ -1,8 +1,10 @@
-import { ChevronDown, MessageCircleMore, X, Mail, Phone, Linkedin, Instagram, Facebook, Youtube } from 'lucide-react';
+import { ChevronDown, MessageCircleMore, X, Mail, Phone } from 'lucide-react';
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import ContactForm from './ContactForm';
 import PopupRegisterForm from './PopupRegisterForm';
+import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { FaThreads } from 'react-icons/fa6';
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -124,49 +126,17 @@ useEffect(() => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  const socialMedia = [
-    { 
-      name: 'LinkedIn', 
-      icon: Linkedin,
-      href: 'https://www.linkedin.com/company/dart-globe/?viewAsMember=true' 
-    },
-    { 
-      name: 'Instagram', 
-      icon: Instagram,
-      href: 'https://www.instagram.com/dart.globe/' 
-    },
-    { 
-      name: 'Facebook', 
-      icon: Facebook,
-      href: 'https://www.facebook.com/share/1ccihQ3e9B/?mibextid=wwXIfr' 
-    },
-    { 
-      name: 'YouTube', 
-      icon: Youtube,
-      href: 'https://www.youtube.com/channel/UCFs6iqxcfhg8XyZgwfuuVTg' 
-    },
-    { 
-      name: 'Threads', 
-      icon: () => (
-        <img 
-          src="/threads-icon.png" 
-          alt="Threads" 
-          className="w-5 h-5"
-          onError={(e) => {
-            e.currentTarget.style.display = 'none';
-            const parent = e.currentTarget.parentElement;
-            if (parent) {
-              const fallback = document.createElement('span');
-              fallback.className = 'w-5 h-5 flex items-center justify-center text-xs font-bold';
-              fallback.textContent = '@';
-              parent.appendChild(fallback);
-            }
-          }}
-        />
-      ), 
-      href: 'https://www.threads.com/@dart.globe' 
-    }
-  ];
+   const socialMedia = [
+      { icon: FaLinkedin, href: 'https://www.linkedin.com/company/dart-globe/?viewAsMember=true', label: 'LinkedIn' },
+      { icon: FaInstagram, href: 'https://www.instagram.com/dart.globe/', label: 'Instagram' },
+      { icon: FaFacebook, href: 'https://www.facebook.com/share/1ccihQ3e9B/?mibextid=wwXIfr', label: 'Facebook' },
+      { icon: FaYoutube, href: 'https://www.youtube.com/channel/UCFs6iqxcfhg8XyZgwfuuVTg', label: 'YouTube' },
+      { 
+        icon: FaThreads,
+        href: 'https://www.threads.com/@dart.globe',
+        label: 'Threads'
+      },
+    ];
 
   useEffect(() => {
     const checkMobile = () => {
@@ -348,14 +318,15 @@ useEffect(() => {
                   const IconComponent = social.icon;
                   return (
                     <a
-                      key={social.name}
+                      key={social.label}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-white hover:text-Purple-700 transition-colors"
-                      aria-label={social.name}
+                      aria-label={social.label}
                     >
-                      {React.isValidElement(IconComponent) ? IconComponent : <IconComponent size={20} />}</a>
+                      <IconComponent size={20} />
+                    </a>
                   );
                 })}
               </div>
@@ -365,14 +336,15 @@ useEffect(() => {
                   const IconComponent = social.icon;
                   return (
                     <a
-                      key={social.name}
+                      key={social.label}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-white hover:text-[#FF0000] transition-colors transition-all duration-300 transform hover:-translate-y-0.5"
-                      aria-label={social.name}
+                      aria-label={social.label}
                     >
-                      {React.isValidElement(IconComponent) ? IconComponent : <IconComponent size={20} />}</a>
+                      <IconComponent size={20} />
+                    </a>
                   );
                 })}
               </div>
