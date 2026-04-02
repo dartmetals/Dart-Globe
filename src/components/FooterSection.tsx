@@ -1,10 +1,12 @@
 import React from 'react';
 import { 
   FaFacebookF, 
-  FaTwitter, 
   FaLinkedinIn, 
-  FaArrowRight
+  FaArrowRight,
+  FaInstagram,
+  FaYoutube
 } from 'react-icons/fa';
+import { FaThreads } from 'react-icons/fa6';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -84,12 +86,89 @@ const Footer: React.FC = () => {
       type: 'section',
       sectionId: 'contact',
       onClick: () => handlePageNavigation('/contact-us')
-    }
+    },
+    { 
+      name: 'Study In UK', 
+      type: 'page',
+      path: '/study-abroad/uk',
+      onClick: () => handlePageNavigation('/study-abroad/uk')
+    },
+    { 
+      name: 'Study In USA', 
+      type: 'page',
+      path: '/study-abroad/usa',
+      onClick: () => handlePageNavigation('/study-abroad/usa')
+    },
+    { 
+      name: 'Study In Canada', 
+      type: 'page',
+      path: '/study-abroad/canada',
+      onClick: () => handlePageNavigation('/study-abroad/canada')
+    },
+    { 
+      name: 'Study In Australia', 
+      type: 'page',
+      path: '/study-abroad/australia',
+      onClick: () => handlePageNavigation('/study-abroad/australia')
+    },
+    { 
+      name: 'Study In Germany', 
+      type: 'page',
+      path: '/study-abroad/germany',
+      onClick: () => handlePageNavigation('/study-abroad/germany')
+    },
+    { 
+      name: 'Study In New Zealand', 
+      type: 'page',
+      path: '/study-abroad/usa',
+      onClick: () => handlePageNavigation('/study-abroad/new-zealand')
+    },
+    { 
+      name: 'Study In Europe', 
+      type: 'page',
+      path: '/study-abroad/europe',
+      onClick: () => handlePageNavigation('/study-abroad/europe')
+    },
+    { 
+      name: 'Study In Ireland', 
+      type: 'page',
+      path: '/study-abroad/ireland',
+      onClick: () => handlePageNavigation('/study-abroad/ireland')
+    },
   ];
 
   // Split navlinks into two columns
-  const leftColumnLinks = navLinks.slice(0, 4);
-  const rightColumnLinks = navLinks.slice(4);
+  const leftColumnLinks = navLinks.slice(0, 8);
+  const rightColumnLinks = navLinks.slice(8);
+
+  // Social media links configuration
+  const socialLinks = [
+    { 
+      icon: FaLinkedinIn, 
+      href: 'https://www.linkedin.com/company/dart-globe/?viewAsMember=true',
+      label: 'LinkedIn'
+    },
+    { 
+      icon: FaInstagram, 
+      href: 'https://www.instagram.com/dart.globe/',
+      label: 'Instagram'
+    },
+    { 
+      icon: FaFacebookF, 
+      href: 'https://www.facebook.com/share/1ccihQ3e9B/?mibextid=wwXIfr',
+      label: 'Facebook'
+    },
+    { 
+      icon: FaYoutube, 
+      href: 'https://www.youtube.com/channel/UCFs6iqxcfhg8XyZgwfuuVTg',
+      label: 'YouTube'
+    },
+    { 
+      icon: FaThreads, 
+      href: 'https://www.threads.com/@dart.globe',
+      label: 'Threads'
+    },
+  ];
 
   return (
     <footer className="bg-[#20212B] text-slate-100 pt-12 pb-6">
@@ -107,21 +186,30 @@ const Footer: React.FC = () => {
               </div>
             </div>
             
+             <p className="text-gray-400 leading-relaxed">
+              <strong className="text-gray-300">DartGlobe</strong> stands out because we treat your career goals as our own. We skip the "one-size-fits-all" approach and provide a personalized roadmap based on your unique academic background and budget. Our strong network of partner institutions ensures your profile reaches the right decision-makers.
+            </p>
             <p className="text-gray-400 leading-relaxed">
               <strong className="text-gray-300">Dream Locally, Achieve Globally.</strong> Transform your future with DartGlobe. We provide the bridge to top-tier universities and the expert guidance to get you there.
             </p>
             
             <div className="pt-4">
               <div className="flex space-x-3">
-                <a href="#" className="p-2 bg-gray-300 hover:bg-[#FF0000] rounded-full transition-all duration-300">
-                  <FaTwitter className="text-gray-700 hover:text-gray-300" />
-                </a>
-                <a href="#" className="p-2 bg-gray-300 hover:bg-[#FF0000] rounded-full transition-all duration-300">
-                  <FaLinkedinIn className="text-gray-700 hover:text-gray-300" />
-                </a>
-                <a href="#" className="p-2 bg-gray-300 hover:bg-[#FF0000] rounded-full transition-all duration-300">
-                  <FaFacebookF className="text-gray-700 hover:text-gray-300" />
-                </a>
+                {socialLinks.map((social, index) => {
+                  const IconComponent = social.icon;
+                  return (
+                    <a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 bg-gray-300 hover:bg-[#FF0000] rounded-full transition-all duration-300"
+                      aria-label={social.label}
+                    >
+                      <IconComponent className="text-gray-700 hover:text-gray-300" />
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -176,7 +264,7 @@ const Footer: React.FC = () => {
                     High Street North,<br />
                     London, E12 6SL
                   </p>
-                  <p className="text-gray-200 font-semibold text-xs mt-1">Contact Number:<br/> +44 7385 649648</p>
+                  <p className="text-gray-200 font-semibold text-xs mt-1">Tel: +44 7385 649648</p>
                 </div>
               </div>
               
@@ -191,7 +279,7 @@ const Footer: React.FC = () => {
                     (Pillar 1062 & 1063),<br />
                     Ameerpet, Hyderabad - 500073
                   </p>
-                  <p className="text-gray-200 font-semibold text-xs mt-1">Contact Number:<br/> +91 91333 29955</p>
+                  <p className="text-gray-200 font-semibold text-xs mt-1">Tel: +91 91333 29955</p>
                 </div>
               </div>
               
@@ -206,7 +294,7 @@ const Footer: React.FC = () => {
                     Marathahalli,<br />
                     Bangalore - 560037
                   </p>
-                  <p className="text-gray-200 font-semibold text-xs mt-1">Contact Number:<br/> +91 97395 52345</p>
+                  <p className="text-gray-200 font-semibold text-xs mt-1">Tel: +91 97395 52345</p>
                 </div>
               </div>
               
@@ -221,7 +309,7 @@ const Footer: React.FC = () => {
                     Vijayawada - 520007,<br />
                     Andhra Pradesh
                   </p>
-                  <p className="text-gray-200 font-semibold text-xs mt-1">Contact Number:<br/> +91 91333 29955</p>
+                  <p className="text-gray-200 font-semibold text-xs mt-1">Tel: +91 91333 29955</p>
                 </div>
               </div>
             </div>

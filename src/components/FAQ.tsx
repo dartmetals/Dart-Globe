@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhone, FaEnvelope, FaYoutube } from 'react-icons/fa';
+import { FaThreads } from 'react-icons/fa6';
 
 type QueryType = 'document' | 'visa' | 'accommodation' | 'loan' | 'other';
 
@@ -102,10 +103,15 @@ const FAQ: React.FC = () => {
   ];
 
   const socialLinks = [
-    { icon: FaFacebook, href: '#', label: 'Facebook' },
-    { icon: FaTwitter, href: '#', label: 'Twitter' },
-    { icon: FaInstagram, href: '#', label: 'Instagram' },
-    { icon: FaLinkedin, href: '#', label: 'LinkedIn' },
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/company/dart-globe/?viewAsMember=true', label: 'LinkedIn' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/dart.globe/', label: 'Instagram' },
+    { icon: FaFacebook, href: 'https://www.facebook.com/share/1ccihQ3e9B/?mibextid=wwXIfr', label: 'Facebook' },
+    { icon: FaYoutube, href: 'https://www.youtube.com/channel/UCFs6iqxcfhg8XyZgwfuuVTg', label: 'YouTube' },
+    { 
+      icon: FaThreads,
+      href: 'https://www.threads.com/@dart.globe',
+      label: 'Threads'
+    },
   ];
 
   return (
@@ -154,16 +160,21 @@ London, E12 6SL
     <div className="p-4">
       <p className="font-medium text-sm text-gray-700 mb-2">Follow Us</p>
       <div className="flex space-x-2">
-        {socialLinks.map((social, index) => (
-          <a
-            key={index}
-            href={social.href}
-            aria-label={social.label}
-            className="p-2 rounded-3xl hover:shadow-lg transition-all hover:-translate-y-1 bg-gray-50 active:bg-blue-800 active:bg-scale-105 active:-translate-y-1"
-          >
-            <social.icon className="text-gray-600 text-xl hover:text-[#FF0000]" />
-          </a>
-        ))}
+        {socialLinks.map((social, index) => {
+          const IconComponent = social.icon;
+          return (
+            <a
+              key={index}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.label}
+              className="p-2 rounded-4xl hover:shadow-lg transition-all hover:-translate-y-1 bg-gray-50 active:bg-blue-800 active:bg-scale-105 active:-translate-y-1"
+            >
+              <IconComponent className="text-gray-600 text-xl hover:text-[#FF0000]" />
+            </a>
+          );
+        })}
       </div>
     </div>
 
