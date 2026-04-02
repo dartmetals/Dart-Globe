@@ -165,30 +165,23 @@ const Footer: React.FC = () => {
               Contact Us
             </h3>
 
-            {/* Two Addresses Side by Side */}
+            {/* Four Addresses in 2x2 Grid */}
             <div className="grid grid-cols-2 gap-4 mb-6">
-              {/* Bangalore Address */}
+              {/* UK / International Office */}
               <div className="flex items-start space-x-3 group">
-                {/* <div className="p-2 bg-gray-200 rounded-lg flex-shrink-0">
-                  <FaMapMarkerAlt className="text-gray-700 text-lg" />
-                </div> */}
                 <div>
-                  <p className="font-semibold text-gray-400 mb-1 hover:text-gray-600">Bangalore Office</p>
+                  <p className="font-semibold text-gray-400 mb-1 hover:text-gray-600">UK / International Office</p>
                   <p className="text-gray-400 text-xs leading-tight">
-                    No. 90/3, 2nd Floor,<br />
-                    Outer Ring Rd,<br />
-                    Opp. Innovative Multiplex,<br />
-                    Marathahalli,<br />
-                    Bangalore - 560037
+                    297, Suite 2,<br />
+                    High Street North,<br />
+                    London, E12 6SL
                   </p>
+                  <p className="text-gray-200 font-semibold text-xs mt-1">Contact Number:<br/> +44 7385 649648</p>
                 </div>
               </div>
               
-              {/* Hyderabad Address */}
+              {/* Hyderabad Office */}
               <div className="flex items-start space-x-3 group">
-                {/* <div className="p-2 bg-gray-200 rounded-lg flex-shrink-0">
-                  <FaMapMarkerAlt className="text-gray-700 text-lg" />
-                </div> */}
                 <div>
                   <p className="font-semibold text-gray-400 mb-1 hover:text-gray-600">Hyderabad Office</p>
                   <p className="text-gray-400 text-xs leading-tight">
@@ -198,29 +191,45 @@ const Footer: React.FC = () => {
                     (Pillar 1062 & 1063),<br />
                     Ameerpet, Hyderabad - 500073
                   </p>
+                  <p className="text-gray-200 font-semibold text-xs mt-1">Contact Number:<br/> +91 91333 29955</p>
+                </div>
+              </div>
+              
+              {/* Bangalore Office */}
+              <div className="flex items-start space-x-3 group">
+                <div>
+                  <p className="font-semibold text-gray-400 mb-1 hover:text-gray-600">Bangalore Office</p>
+                  <p className="text-gray-400 text-xs leading-tight">
+                    No. 90/3, 2nd Floor,<br />
+                    Outer Ring Rd,<br />
+                    Opp. Innovative Multiplex,<br />
+                    Marathahalli,<br />
+                    Bangalore - 560037
+                  </p>
+                  <p className="text-gray-200 font-semibold text-xs mt-1">Contact Number:<br/> +91 97395 52345</p>
+                </div>
+              </div>
+              
+              {/* Vijayawada Office */}
+              <div className="flex items-start space-x-3 group">
+                <div>
+                  <p className="font-semibold text-gray-400 mb-1 hover:text-gray-600">Vijayawada Office</p>
+                  <p className="text-gray-400 text-xs leading-tight">
+                    2B, 59A-3-3,<br />
+                    Guru Nanak Colony Road,<br />
+                    Teacher's Colony, Auto Nagar,<br />
+                    Vijayawada - 520007,<br />
+                    Andhra Pradesh
+                  </p>
+                  <p className="text-gray-200 font-semibold text-xs mt-1">Contact Number:<br/> +91 91333 29955</p>
                 </div>
               </div>
             </div>
 
-            {/* Phone & Email Below Addresses */}
-            <div className="grid grid-cols-2 gap-4">
-              {/* Phone Number */}
-              <div className="flex items-center space-x-3 group">
-                {/* <div className="p-2 bg-gray-200 rounded-lg">
-                  <FaPhone className="text-gray-700 text-lg" />
-                </div> */}
-                <div>
-                  <p className="font-semibold text-gray-400 hover:text-gray-600">Phone Number</p>
-                  <p className='text-gray-400'>+44 7385 649648</p>
-                  <p className="text-gray-400">+91 91333 29955</p>
-                </div>
-              </div>
-              
+            {/* Email Below Addresses */}
+            <div className="grid grid-cols-1 gap-4">
               {/* Email Address */}
               <div className="flex items-center space-x-3 group">
-                {/* <div className="p-2 bg-gray-200 rounded-lg">
-                  <FaEnvelope className="text-gray-700 text-lg" />
-                </div> */}
                 <div>
                   <p className="font-semibold text-gray-400 hover:text-gray-600">Email Address</p>
                   <p className="text-gray-400 text-sm">info@dartglobe.com</p>

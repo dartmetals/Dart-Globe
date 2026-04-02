@@ -144,7 +144,7 @@ const FAQ: React.FC = () => {
       <div className="min-w-0 flex-1">
         <p className="font-medium text-sm text-gray-700">International Office</p>
         <p className="text-gray-600 text-xs break-words">
-          297 High Street North<br/>
+          297, Suite 2, High Street North,<br/>
 London, E12 6SL
         </p>
       </div>
@@ -185,8 +185,10 @@ London, E12 6SL
       </div>
       <div className="min-w-0 flex-1">
         <p className="font-medium text-sm text-gray-700">Contact Number</p>
-        <p className='text-gray-600 text-xs break-all'>+44 7385 649648</p>
-        <p className="text-gray-600 text-xs break-all">+91 91333 29955</p>
+        <p className='text-gray-600 text-xs break-all'><strong>UK / International Office:</strong> +44 7385 649648</p>
+        <p className="text-gray-600 text-xs break-all"><strong>Hyderabad Office:</strong> +91 91333 29955</p>
+        <p className="text-gray-600 text-xs break-all"><strong>Bangalore Office:</strong> +91 97395 52345</p>
+        <p className="text-gray-600 text-xs break-all"><strong>Vijayawada Office:</strong> +91 91333 29955</p>
       </div>
     </div>
   </div>

@@ -34,6 +34,7 @@ import FAQPage from './pages/FAQPage';
 import ContactForm from './components/ContactForm';
 import ScrollToTop from './components/Animations/ScrollToTop';
 // import BlogSection from './components/BlogSection';
+// import BlogPage from './components/BlogPage';
 
 function App() {
   return (
@@ -77,6 +78,7 @@ function App() {
       <Route path='/services/visa-assistance' element={<VisaAssistance/>}/>
       <Route path='/faq' element={<FAQPage/>}/>
       <Route path='/contact-us' element={<ContactForm/>}/>
+      {/* <Route path='/blog/:id' element={<BlogPage/>}/> */}
        </Routes> 
         <FooterSection/>       
         </Router>

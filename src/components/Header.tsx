@@ -389,7 +389,7 @@ useEffect(() => {
               <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
                 <div className="flex items-center">
                   <img 
-                    src="/dg-logo.png" 
+                    src="/dg-headerlogo.png" 
                     alt="Dart Globe Logo" 
                     className={`transition-all duration-300 ${
                       scrolled && window.innerWidth < 1024 ? 'h-8 w-auto' : 'h-18 w-auto ml-6'

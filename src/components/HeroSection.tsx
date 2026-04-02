@@ -1,3 +1,65 @@
+// import React from "react";
+// // import StatsSection from "./StatsSection";
+// import { useNavigate } from "react-router-dom";
+
+// const HeroSection: React.FC = () => {
+//   const navigate = useNavigate();
+  
+//   return (
+//     <section className="relative w-full overflow-hidden">
+//       {/* Background Image with overlay - Height determined by image */}
+//       <div className="relative z-0 w-full pt-48 md:pt-44">
+//         <img 
+//           src="/hero-bgimg.png" 
+//           alt="Hero Background" 
+//           className="w-full h-auto object-cover object-top"
+//         />
+//         {/* White overlay at the top */}
+//         {/* <div className="absolute inset-0 bg-gradient-to-b from-white via-white/50 to-transparent"></div> */}
+//       </div>
+      
+//       {/* Content Container - Centered at top, absolute positioned over image */}
+//       <div className="absolute top-0 left-0 right-0 z-10 w-full pt-24 md:pt-20 lg:pt-30">
+//         <div className="max-w-3xl mx-auto px-6 text-center">
+//           {/* Title */}
+//           <h1 className="text-2xl sm:text-5xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+//             Build Your Global Future <span className="block text-blue-600">With Confidence</span>
+//           </h1>
+
+//           {/* Description */}
+//           <p className="mt- text-xs md:text-base text-gray-700 max-w-3xl mx-auto">
+//             Your international career starts with the right guidance. Join hundreds of students at top-ranked universities with our expert admissions and visa support.
+//           </p>
+
+//           {/* Buttons - Centered */}
+//           <div className="mt-2 flex gap-4 justify-center">
+//             {/* Filled Button */}
+//             <button onClick={()=>navigate("/contact-us")} className="px-2 md:px-6 md:py-3 py-1 ml-6  border border-2  md:border-[#FF0000] border-purple-700 text-black font-semibold rounded-4xl shadow  md:hover:bg-[#FF0000] hover:bg-purple-800 active:bg-purple-800 active:scale-105 active:-translate-y-1 hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 transition cursor-pointer">
+//               Get Started
+//             </button>
+
+//             {/* Outline Button */}
+//             {/* <button 
+//               onClick={() => navigate("/about-us")}
+//               className="px-8 py-3 border-2 border-[#FF0000] text-[#FF0000] font-semibold rounded-full hover:bg-[#FF0000] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+//             >
+//               Learn More
+//             </button> */}
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Stats Section - Positioned below content */}
+//       {/* <div className="relative z-10 mt-12 md:mt-16">
+//         <StatsSection />
+//       </div> */}
+//     </section>
+//   );
+// };
+
+// export default HeroSection;
+
+
 import React from "react";
 import StatsSection from "./StatsSection";
 import { useNavigate } from "react-router-dom";
