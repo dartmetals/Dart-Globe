@@ -309,7 +309,7 @@ useEffect(() => {
                   className="flex items-center gap-2 text-sm text-gray-700 hover:text-blue-600 transition-colors"
                 >
                   <Phone size={16} className="text-green-600" />
-                  <span className='text-white font-semibold'>+44 7385 649648</span>
+                  <span className='text-white font-semibold'>+91 91333 29955 / +44 7385 649648</span>
                 </a>
               </div>
               

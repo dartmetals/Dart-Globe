@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Send, User, Phone, Mail, MessageSquare, Loader2, CheckCircle, Sparkles } from 'lucide-react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { FaWhatsapp } from 'react-icons/fa';
 
 type QueryType = 'document' | 'visa' | 'accommodation' | 'loan' | 'other';
 
@@ -129,24 +130,28 @@ const ContactForm: React.FC<ContactFormProps> = ({ isModal = false }) => {
       flag: '🌍',
       address: '297, Suite 2, High Street North, London, E12 6SL',
       phone: '+44 7385 649648',
+      whatsapp: '+44 7385 649648',
     },
     {
       name: 'Hyderabad Office',
       flag: '🇮🇳',
       address: '#918, 8th Floor, Vasavi MPM Grand, Beside Ameerpet Metro, Pillar 1062 & 1063, Ameerpet, Hyderabad - 500073',
       phone: '+91 91333 29955',
+      whatsapp: '+91 91333 29955',
     },
     {
       name: 'Bangalore Office',
       flag: '🇮🇳',
       address: 'No. 90/3, 2nd Floor, Outer Ring Road, Opp. Innovative Multiplex, Marathahalli, Bangalore - 560037',
       phone: '+91 97395 52345',
+      whatsapp: '+91 97395 52345',
     },
     {
       name: 'Vijayawada Office',
       flag: '🇮🇳',
       address: '2B, 59A-3-3, Guru Nanak Colony Road, Teacher\'s Colony, Auto Nagar, Vijayawada - 520007, Andhra Pradesh',
       phone: '+91 91333 29955',
+      whatsapp: '+91 91333 29955',
     },
   ];
 
@@ -548,7 +553,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ isModal = false }) => {
               {offices.map((office, index) => (
                 <div key={index} className="bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300">
                   <div className="flex items-center space-x-2 mb-4">
-                    <span className="text-2xl">{office.flag}</span>
                     <h3 className="text-lg font-bold text-gray-800">{office.name}</h3>
                   </div>
                   
@@ -558,12 +562,19 @@ const ContactForm: React.FC<ContactFormProps> = ({ isModal = false }) => {
                       <p className="text-gray-700 text-sm leading-relaxed">{office.address}</p>
                     </div>
                     
-                    <div>
-                      <p className="text-gray-500 text-xs font-semibold mb-1">📞 Call / WhatsApp:</p>
-                      <a href={`tel:${office.phone}`} className="text-gray-800 text-sm font-medium hover:text-[#FF0000] transition-colors">
-                        {office.phone}
-                      </a>
-                    </div>
+                    <div className="flex items-center gap-2">
+  <div className="flex items-center gap-1">
+    <Phone size={16} className="text-green-600" />
+    <span className="text-gray-500 text-xs font-semibold">/</span>
+    <FaWhatsapp size={16} className="text-green-500" />
+  </div>
+  <a 
+    href={`tel:${office.phone}`} 
+    className="text-gray-800 text-sm font-medium hover:text-[#FF0000] transition-colors"
+  >
+    {office.phone}
+  </a>
+</div>
                   </div>
                 </div>
               ))}
