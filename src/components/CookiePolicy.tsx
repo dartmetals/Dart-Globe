@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Globe, Cookie, Settings, ExternalLink, Info, AlertCircle, FileText } from 'lucide-react';
+import { Mail, Globe, Cookie, Settings, ExternalLink, FileText, Eye, Shield } from 'lucide-react';
 
 const CookiePolicy: React.FC = () => {
   return (
@@ -14,7 +14,6 @@ const CookiePolicy: React.FC = () => {
           <p className="text-sm md:text-base text-white/90 max-w-3xl mx-auto">
             Learn how we use cookies to enhance your browsing experience and improve our website functionality.
           </p>
-          {/* <div className="w-24 h-1 bg-white mx-auto mt-6 rounded-full"></div> */}
         </div>
       </div>
 
@@ -32,9 +31,9 @@ const CookiePolicy: React.FC = () => {
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-blue-100">
-              <Info className="h-6 w-6 text-blue-600" />
+              <Eye className="h-6 w-6 text-blue-600" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800"> What Are Cookies?</h2>
+            <h2 className="text-2xl font-bold text-gray-800">What Are Cookies?</h2>
           </div>
           <p className="text-gray-700">
             Cookies are small text files stored on your device (computer, mobile, or tablet) when you visit a
@@ -143,7 +142,7 @@ const CookiePolicy: React.FC = () => {
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-teal-100">
-              <AlertCircle className="h-6 w-6 text-teal-600" />
+              <Shield className="h-6 w-6 text-teal-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">Consent</h2>
           </div>
@@ -189,11 +188,6 @@ const CookiePolicy: React.FC = () => {
             </p>
           </div>
         </div>
-
-        {/* Footer Note */}
-        {/* <div className="text-center mt-8 text-gray-500 text-sm">
-          <p>Last updated: {new Date().toLocaleDateString()}</p>
-        </div> */}
       </div>
     </div>
   );

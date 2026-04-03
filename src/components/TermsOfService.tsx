@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Globe, Shield, FileText, AlertCircle, DollarSign, Lock, ExternalLink, Scale, Info } from 'lucide-react';
+import { Mail, Globe, Shield, FileText, DollarSign, Lock, ExternalLink, Scale, XCircle, AlertTriangle, Users } from 'lucide-react';
 
 const TermsOfService: React.FC = () => {
   return (
@@ -20,15 +20,6 @@ const TermsOfService: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
-        {/* Introduction */}
-        {/* <div className="p-3 mb-2">
-          <p className="text-gray-700 leading-relaxed">
-            Welcome to Dart Globe. By accessing our website and using our services, you agree to comply with
-            and be bound by the following Terms of Service. Please read these terms carefully before engaging
-            with our services.
-          </p>
-        </div> */}
-
         {/* Section 1 */}
         <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
@@ -50,7 +41,7 @@ const TermsOfService: React.FC = () => {
         <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-purple-100">
-              <Info className="h-6 w-6 text-purple-600" />
+              <Users className="h-6 w-6 text-purple-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">2. Services Offered</h2>
           </div>
@@ -92,8 +83,8 @@ const TermsOfService: React.FC = () => {
         {/* Section 4 */}
         <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-yellow-100">
-              <AlertCircle className="h-6 w-6 text-yellow-600" />
+            <div className="p-2 bg-red-100">
+              <XCircle className="h-6 w-6 text-red-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">4. No Guarantee of Visa or Job Approval</h2>
           </div>
@@ -110,8 +101,8 @@ const TermsOfService: React.FC = () => {
         {/* Section 5 */}
         <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-red-100">
-              <DollarSign className="h-6 w-6 text-red-600" />
+            <div className="p-2 bg-yellow-100">
+              <DollarSign className="h-6 w-6 text-yellow-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">5. Fees and Payments</h2>
           </div>
@@ -154,7 +145,7 @@ const TermsOfService: React.FC = () => {
         <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-orange-100">
-              <AlertCircle className="h-6 w-6 text-orange-600" />
+              <AlertTriangle className="h-6 w-6 text-orange-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">8. Limitation of Liability</h2>
           </div>
@@ -251,11 +242,6 @@ const TermsOfService: React.FC = () => {
             </p>
           </div>
         </div>
-
-        {/* Footer Note */}
-        {/* <div className="text-center mt-8 text-gray-500 text-sm">
-          <p>Last updated: {new Date().toLocaleDateString()}</p>
-        </div> */}
       </div>
     </div>
   );

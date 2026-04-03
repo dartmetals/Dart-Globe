@@ -1,5 +1,6 @@
 import React from 'react';
-import { Mail, Globe, AlertCircle, Shield, ExternalLink, FileText, Info } from 'lucide-react';
+import { Mail, Globe, Shield, ExternalLink, FileText, XCircle, AlertTriangle, Users } from 'lucide-react';
+import { PiInfoFill } from 'react-icons/pi';
 
 const Disclaimer: React.FC = () => {
   return (
@@ -24,7 +25,7 @@ const Disclaimer: React.FC = () => {
         <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-yellow-100">
-              <AlertCircle className="h-6 w-6 text-yellow-600" />
+              <PiInfoFill className="h-6 w-6 text-yellow-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">General Information</h2>
           </div>
@@ -39,8 +40,8 @@ const Disclaimer: React.FC = () => {
         {/* Section 1 */}
         <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-yellow-100">
-              <AlertCircle className="h-6 w-6 text-yellow-600" />
+            <div className="p-2 bg-red-100">
+              <XCircle className="h-6 w-6 text-red-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">No Guarantee of Visa or Job Approval</h2>
           </div>
@@ -62,7 +63,7 @@ const Disclaimer: React.FC = () => {
         <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-blue-100">
-              <Info className="h-6 w-6 text-blue-600" />
+              <AlertTriangle className="h-6 w-6 text-blue-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">Information Accuracy</h2>
           </div>
@@ -106,7 +107,7 @@ const Disclaimer: React.FC = () => {
         <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-red-100">
-              <AlertCircle className="h-6 w-6 text-red-600" />
+              <AlertTriangle className="h-6 w-6 text-red-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">Limitation of Liability</h2>
           </div>
@@ -123,7 +124,7 @@ const Disclaimer: React.FC = () => {
         <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-orange-100">
-              <Shield className="h-6 w-6 text-orange-600" />
+              <Users className="h-6 w-6 text-orange-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800">User Responsibility</h2>
           </div>
