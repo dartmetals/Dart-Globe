@@ -3,25 +3,31 @@ import { Mail, Globe, Shield, FileText, AlertCircle, DollarSign, Lock, ExternalL
 
 const TermsOfService: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-5 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto mt-20 md:mt-28">
-        {/* Header */}
-        {/* <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Terms of Service
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 py-32 px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="relative max-w-7xl mx-auto text-center">
+          <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+            Terms of Service - Dart Globe
           </h1>
-          <p className="text-xl text-gray-600">Dart Globe</p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-4 rounded-full"></div>
-        </div> */}
-
-        {/* Introduction */}
-        <div className="p-3 mb-2">
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-sm md:text-base text-white/90 max-w-3xl mx-auto">
             Welcome to Dart Globe. By accessing our website and using our services, you agree to comply with
             and be bound by the following Terms of Service. Please read these terms carefully before engaging
             with our services.
           </p>
         </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+        {/* Introduction */}
+        {/* <div className="p-3 mb-2">
+          <p className="text-gray-700 leading-relaxed">
+            Welcome to Dart Globe. By accessing our website and using our services, you agree to comply with
+            and be bound by the following Terms of Service. Please read these terms carefully before engaging
+            with our services.
+          </p>
+        </div> */}
 
         {/* Section 1 */}
         <div className="p-3 mb-2">
@@ -224,14 +230,14 @@ const TermsOfService: React.FC = () => {
         </div>
 
         {/* Section 13 - Contact Us */}
-        <div className="p-3 text-">
+        <div className="p-3">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-black/20">
-              <Mail className="h-6 w-6 text-" />
+              <Mail className="h-6 w-6" />
             </div>
             <h2 className="text-2xl font-bold">13. Contact Information</h2>
           </div>
-          <p className="text- mb-4">
+          <p className="mb-4">
             For any questions regarding these Terms of Service:
           </p>
           <div className="space-y-2">

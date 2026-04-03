@@ -3,17 +3,22 @@ import { Mail, Globe, Shield, Lock, Cookie, Eye, Users, FileText, ExternalLink }
 
 const PrivacyPolicy: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-5 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto mt-28">
-        {/* Header */}
-        {/* <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Privacy Policy
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 py-32 px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="relative max-w-7xl mx-auto text-center">
+          <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+            Privacy Policy - Dart Globe
           </h1>
-          <p className="text-xl text-gray-600">Dart Globe</p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-4 rounded-full"></div>
-        </div> */}
+          <p className="text-sm md:text-base text-white/90 max-w-2xl mx-auto">
+            Your privacy matters to us. Learn how we collect, use, and protect your personal information.
+          </p>
+          {/* <div className="w-24 h-1 bg-white mx-auto mt-6 rounded-full"></div> */}
+        </div>
+      </div>
 
+      <div className="max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
         {/* Introduction */}
         <div className="p-3 mb-2">
           <p className="text-gray-700 leading-relaxed">

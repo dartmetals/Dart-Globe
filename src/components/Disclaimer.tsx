@@ -3,19 +3,31 @@ import { Mail, Globe, AlertCircle, Shield, ExternalLink, FileText, Info } from '
 
 const Disclaimer: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-5 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto mt-24 md:mt-28">
-        {/* Header */}
-        {/* <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Disclaimer
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 py-24 px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="relative max-w-7xl mx-auto text-center mt-32">
+          <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+            Disclaimer - Dart Globe
           </h1>
-          <p className="text-xl text-gray-600">Dart Globe</p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-4 rounded-full"></div>
-        </div> */}
+          <div className="max-w-2xl mx-auto">
+            <p className="text-white/90 text-sm md:text-base">
+              Please read this disclaimer carefully before using our website or services.
+            </p>
+          </div>
+        </div>
+      </div>
 
-        {/* Introduction */}
-        <div className="mb-8">
+      <div className="max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+        {/* Introduction with Title */}
+        <div className="p-3 mb-2">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 bg-yellow-100">
+              <AlertCircle className="h-6 w-6 text-yellow-600" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-800">General Information</h2>
+          </div>
           <p className="text-gray-700 leading-relaxed">
             The information provided on the Dart Globe website is for general informational purposes only.
             While we strive to ensure that all information is accurate, complete, and up to date, we make no
@@ -25,7 +37,7 @@ const Disclaimer: React.FC = () => {
         </div>
 
         {/* Section 1 */}
-        <div className="mb-6">
+        <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-yellow-100">
               <AlertCircle className="h-6 w-6 text-yellow-600" />
@@ -47,7 +59,7 @@ const Disclaimer: React.FC = () => {
         </div>
 
         {/* Section 2 */}
-        <div className="mb-6">
+        <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-blue-100">
               <Info className="h-6 w-6 text-blue-600" />
@@ -62,7 +74,7 @@ const Disclaimer: React.FC = () => {
         </div>
 
         {/* Section 3 */}
-        <div className="mb-6">
+        <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-purple-100">
               <Shield className="h-6 w-6 text-purple-600" />
@@ -76,7 +88,7 @@ const Disclaimer: React.FC = () => {
         </div>
 
         {/* Section 4 */}
-        <div className="mb-6">
+        <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-green-100">
               <ExternalLink className="h-6 w-6 text-green-600" />
@@ -91,7 +103,7 @@ const Disclaimer: React.FC = () => {
         </div>
 
         {/* Section 5 */}
-        <div className="mb-6">
+        <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-red-100">
               <AlertCircle className="h-6 w-6 text-red-600" />
@@ -108,7 +120,7 @@ const Disclaimer: React.FC = () => {
         </div>
 
         {/* Section 6 */}
-        <div className="mb-6">
+        <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-orange-100">
               <Shield className="h-6 w-6 text-orange-600" />
@@ -127,7 +139,7 @@ const Disclaimer: React.FC = () => {
         </div>
 
         {/* Section 7 */}
-        <div className="mb-6">
+        <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-indigo-100">
               <FileText className="h-6 w-6 text-indigo-600" />
@@ -141,7 +153,7 @@ const Disclaimer: React.FC = () => {
         </div>
 
         {/* Section 8 */}
-        <div className="mb-6">
+        <div className="p-3 mb-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-teal-100">
               <FileText className="h-6 w-6 text-teal-600" />
@@ -155,14 +167,14 @@ const Disclaimer: React.FC = () => {
         </div>
 
         {/* Section 9 - Contact Us */}
-        <div className="p-3 text-">
+        <div className="p-3 text-black">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-black/20">
-              <Mail className="h-6 w-6 text-" />
+              <Mail className="h-6 w-6 text-black" />
             </div>
-            <h2 className="text-2xl font-bold"> Contact Us</h2>
+            <h2 className="text-2xl font-bold">Contact Us</h2>
           </div>
-          <p className="text- mb-4">
+          <p className="text-black/90 mb-4">
             For any questions regarding this Disclaimer:
           </p>
           <div className="space-y-2">
@@ -176,11 +188,6 @@ const Disclaimer: React.FC = () => {
             </p>
           </div>
         </div>
-
-        {/* Footer Note */}
-        {/* <div className="text-center mt-8 text-gray-500 text-sm">
-          <p>Last updated: {new Date().toLocaleDateString()}</p>
-        </div> */}
       </div>
     </div>
   );

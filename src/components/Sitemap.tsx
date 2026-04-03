@@ -2,28 +2,29 @@ import React from 'react';
 
 const Sitemap: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-5 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto mt-24 md:mt-28">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Sitemap
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 py-24 px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="relative max-w-7xl mx-auto text-center mt-32">
+          <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+            Sitemap - Dart Globe
           </h1>
-          {/* <p className="text-xl text-gray-600">Dart Globe</p> */}
-          <p className="text-gray-500 mt-4 max-w-2xl mx-auto">
-            Explore all pages of our website to easily find the information you need about our services, locations,
-            and resources.
-          </p>
-          {/* <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-4 rounded-full"></div> */}
+          <div className="max-w-2xl mx-auto">
+            <p className="text-white/90 text-sm md:text-base">
+              Explore all pages of our website to easily find the information you need about our services, locations, and resources.
+            </p>
+          </div>
         </div>
+      </div>
 
+      <div className="max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8">
         {/* Grid Layout for Sitemap */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           
           {/* Main Pages */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              {/* <Home className="h-5 w-5 text-blue-600" /> */}
               <h2 className="text-xl font-bold text-gray-800">🏠 Main Pages</h2>
             </div>
             <ul className="space-y-2 pl-7">
@@ -39,16 +40,12 @@ const Sitemap: React.FC = () => {
               <li>
                 <a href="/faq" className="text-gray-600 hover:text-blue-600 transition-colors">FAQ</a>
               </li>
-              {/* <li>
-                <a href="/#why-choose-us" className="text-gray-600 hover:text-blue-600 transition-colors">Blog / Resources</a>
-              </li> */}
             </ul>
           </div>
 
           {/* Services */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              {/* <Globe className="h-5 w-5 text-purple-600" /> */}
               <h2 className="text-xl font-bold text-gray-800">🌍 Services</h2>
             </div>
             <ul className="space-y-2 pl-7">
@@ -79,7 +76,6 @@ const Sitemap: React.FC = () => {
           {/* Coaching & Exams */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              {/* <GraduationCap className="h-5 w-5 text-green-600" /> */}
               <h2 className="text-xl font-bold text-gray-800">🎓 Coaching & Exams</h2>
             </div>
             <ul className="space-y-2 pl-7">
@@ -113,7 +109,6 @@ const Sitemap: React.FC = () => {
           {/* Locations */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              {/* <MapPin className="h-5 w-5 text-red-600" /> */}
               <h2 className="text-xl font-bold text-gray-800">📍 Locations</h2>
             </div>
             <ul className="space-y-2 pl-7">
@@ -135,7 +130,6 @@ const Sitemap: React.FC = () => {
           {/* Career & Support */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              {/* <Briefcase className="h-5 w-5 text-orange-600" /> */}
               <h2 className="text-xl font-bold text-gray-800">💼 Career & Support</h2>
             </div>
             <ul className="space-y-2 pl-7">
@@ -157,7 +151,6 @@ const Sitemap: React.FC = () => {
           {/* Legal & Policies */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              {/* <Scale className="h-5 w-5 text-indigo-600" /> */}
               <h2 className="text-xl font-bold text-gray-800">📄 Legal & Policies</h2>
             </div>
             <ul className="space-y-2 pl-7">
@@ -179,7 +172,6 @@ const Sitemap: React.FC = () => {
           {/* Quick Links */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              {/* <HelpCircle className="h-5 w-5 text-pink-600" /> */}
               <h2 className="text-xl font-bold text-gray-800">📞 Quick Links</h2>
             </div>
             <ul className="space-y-2 pl-7">
@@ -205,11 +197,6 @@ const Sitemap: React.FC = () => {
             </ul>
           </div>
         </div>
-
-        {/* Footer Note */}
-        {/* <div className="text-center mt-12 text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} Dart Globe. All rights reserved.</p>
-        </div> */}
       </div>
     </div>
   );
