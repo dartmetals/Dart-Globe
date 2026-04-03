@@ -33,6 +33,11 @@ import VisaAssistance from './pages/Services/VisaAssistance';
 import FAQPage from './pages/FAQPage';
 import ContactForm from './components/ContactForm';
 import ScrollToTop from './components/Animations/ScrollToTop';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfService from './components/TermsOfService';
+import CookiePolicy from './components/CookiePolicy';
+import Disclaimer from './components/Disclaimer';
+import Sitemap from './components/Sitemap';
 // import BlogSection from './components/BlogSection';
 // import BlogPage from './components/BlogPage';
 
@@ -78,6 +83,11 @@ function App() {
       <Route path='/services/visa-assistance' element={<VisaAssistance/>}/>
       <Route path='/faq' element={<FAQPage/>}/>
       <Route path='/contact-us' element={<ContactForm/>}/>
+      <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
+      <Route path='/terms-of-service' element={<TermsOfService/>}/>
+      <Route path='/cookie-policy' element={<CookiePolicy/>}/>
+      <Route path='/disclaimer' element={<Disclaimer/>}/>
+      <Route path='/sitemap' element={<Sitemap/>}/>
       {/* <Route path='/blog/:id' element={<BlogPage/>}/> */}
        </Routes> 
         <FooterSection/>       
