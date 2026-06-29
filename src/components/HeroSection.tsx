@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StatsSection from "./StatsSection";
 import { useNavigate } from "react-router-dom";
-import { Bell, Calendar, Users, FileText, Award, Stamp, Plane, ChevronLeft, ChevronRight, BadgeCheck, MapPin } from 'lucide-react';
+import { Calendar, Users, FileText, Award, Stamp, Plane, ChevronLeft, ChevronRight, BadgeCheck, MapPin } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
   const navigate = useNavigate();
@@ -57,9 +57,9 @@ const HeroSection: React.FC = () => {
     return () => clearInterval(interval);
   }, [slides.length]);
 
-  const handleDotClick = (index: number) => {
-    setCurrentSlide(index);
-  };
+  // const handleDotClick = (index: number) => {
+  //   setCurrentSlide(index);
+  // };
 
   const goToPreviousSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
