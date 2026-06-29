@@ -1,14 +1,3 @@
-// OfferUpdateModal.tsx
-// "Latest Update" notification popup — redesigned to match the new DartGlobe
-// "Your UK Journey Starts Here" poster (navy / maroon / dark-teal / gold palette).
-//
-// Sizing now intentionally mirrors PopupRegisterForm exactly: w-full max-w-2xl h-[80vh],
-// rounded-3xl, shadow-2xl, overflow-hidden, with the content area scrollable
-// (flex-1 overflow-y-auto). That gives this modal the SAME width/height behaviour as the
-// register form on mobile, tablet and desktop — you see the top of the poster first and
-// scroll down inside the box to reach the contact row / locations footer, exactly like the
-// register form does today.
-
 import React, { useEffect, useState } from 'react';
 import {
   X,
